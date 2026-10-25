@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#3d6e8c">
+<title>池上村幹事人生</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Noto+Sans+TC:wght@500;700;900&display=swap">
+<style>
+:root{--green:#7fa650;--gold:#e9c46a;--blue:#3d6e8c;--paper:#f7f3e8;--red:#c8402a;--ink:#2b2622;--mute:#7a7266;--line:rgba(43,38,34,.14);--card:#fffdf7}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%;overflow:hidden;background:#1c2b3a;color:var(--ink);font-family:"Huninn","Noto Sans TC",system-ui,sans-serif;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+button{font:inherit;color:inherit;border:0;cursor:pointer;background:none}
+#cv{position:fixed;inset:0;width:100%;height:100%;display:block}
+/* 頂部列 */
+#top{position:fixed;left:0;right:0;top:0;padding:calc(6px + env(safe-area-inset-top)) 8px 6px;display:flex;gap:6px;align-items:center;flex-wrap:wrap;pointer-events:none;z-index:5}
+#top>*{pointer-events:auto}
+.chip{background:rgba(255,253,247,.94);border-radius:14px;padding:5px 10px;box-shadow:0 2px 8px rgba(0,0,0,.15);font-size:13px;display:flex;align-items:center;gap:6px;white-space:nowrap}
+#clock b{font-size:17px;font-variant-numeric:tabular-nums}
+#date{font-size:12px;color:var(--mute)}
+#speed{display:flex;gap:2px;padding:3px}
+#speed button{width:32px;height:28px;border-radius:9px;font-size:13px;font-weight:700;color:var(--mute)}
+#speed button.on{background:var(--blue);color:#fff}
+#moneyC b{color:#2f6b2f}
+#moodC{cursor:pointer}
+#loc{position:fixed;left:8px;top:calc(50px + env(safe-area-inset-top));z-index:4;pointer-events:auto}
+#loc .chip{flex-direction:column;align-items:flex-start;gap:0;padding:6px 12px}
+#loc b{font-size:16px}#loc small{color:var(--mute);font-size:11px}
+#rightBtns{position:fixed;right:8px;top:calc(50px + env(safe-area-inset-top));display:flex;flex-direction:column;gap:6px;z-index:4}
+.rb{width:52px;height:52px;border-radius:16px;background:rgba(255,253,247,.95);box-shadow:0 2px 8px rgba(0,0,0,.18);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:20px;line-height:1}
+.rb small{font-size:10px;margin-top:3px;color:var(--mute)}
+.rb.on{background:var(--gold)}
+#feed{position:fixed;left:8px;top:calc(104px + env(safe-area-inset-top));width:min(360px,calc(100vw - 84px));z-index:3;pointer-events:none;display:flex;flex-direction:column;gap:4px}
+.fd{background:rgba(255,253,247,.92);border-left:4px solid var(--blue);border-radius:8px;padding:5px 8px;font-size:12.5px;line-height:1.35;box-shadow:0 1px 4px rgba(0,0,0,.12);animation:fin .25s ease-out;transition:opacity .6s}
+.fd.good{border-color:var(--green)}.fd.bad{border-color:var(--red)}.fd.big{border-color:var(--gold);font-weight:700}
+@keyframes fin{from{transform:translateX(-12px);opacity:0}}
+/* 底部 */
+#bottom{position:fixed;left:0;right:0;bottom:0;z-index:6;padding-bottom:env(safe-area-inset-bottom);background:linear-gradient(180deg,rgba(247,243,232,.0),rgba(247,243,232,.0))}
+#queue{display:flex;gap:6px;padding:0 8px 6px;align-items:flex-end;overflow-x:auto;scrollbar-width:none}
+.qi{flex:none;background:rgba(255,253,247,.96);border-radius:12px;padding:5px 8px;font-size:12px;box-shadow:0 2px 6px rgba(0,0,0,.15);position:relative;max-width:150px;display:flex;align-items:center;gap:6px}
+.qi.cur{border:2px solid var(--blue);max-width:220px}
+.qi .bar{position:absolute;left:6px;right:6px;bottom:2px;height:3px;border-radius:2px;background:#e4ddcc;overflow:hidden}
+.qi .bar i{display:block;height:100%;background:var(--blue)}
+.qi .x{width:20px;height:20px;border-radius:50%;background:#eee3d0;font-size:12px;flex:none}
+.qi span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#tabs{display:flex;background:var(--paper);border-top:1px solid var(--line);box-shadow:0 -3px 10px rgba(0,0,0,.12)}
+#tabs button{flex:1;padding:7px 0 6px;font-size:11px;color:var(--mute);display:flex;flex-direction:column;align-items:center;gap:2px;position:relative}
+#tabs button i{font-style:normal;font-size:18px;line-height:1}
+#tabs button.on{color:var(--blue);font-weight:700;background:#efe8d6}
+#tabs .dot{position:absolute;top:4px;right:calc(50% - 18px);min-width:16px;height:16px;border-radius:8px;background:var(--red);color:#fff;font-size:10px;line-height:16px;padding:0 4px}
+#sheet{background:var(--paper);max-height:min(52vh,460px);overflow-y:auto;border-top:1px solid var(--line);padding:10px 12px 12px;font-size:14px;-webkit-overflow-scrolling:touch}
+#sheet h3{margin:4px 0 8px;font-size:15px;display:flex;justify-content:space-between;align-items:center}
+#sheet h3 small{font-weight:400;color:var(--mute);font-size:12px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px}
+@media(min-width:760px){.grid2{grid-template-columns:1fr 1fr 1fr}}
+.need{font-size:12.5px}
+.need .lb{display:flex;justify-content:space-between}
+.meter{height:9px;border-radius:5px;background:#e4ddcc;overflow:hidden;margin-top:3px}
+.meter i{display:block;height:100%;border-radius:5px;transition:width .3s}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 10px;margin-bottom:7px}
+.card.tap{cursor:pointer}.card.tap:active{background:#f1ead8}
+.trow{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.trow b{font-size:14px}
+.tag{display:inline-block;font-size:11px;padding:1px 7px;border-radius:8px;background:#e8eef2;color:var(--blue);margin-right:4px;white-space:nowrap}
+.tag.r{background:#f7dcd5;color:var(--red)}.tag.g{background:#e3eed6;color:#4a7a2a}.tag.y{background:#f8edc8;color:#8a6a10}
+.desc{font-size:12px;color:var(--mute);margin-top:4px;line-height:1.45}
+.btn{background:var(--blue);color:#fff;border-radius:10px;padding:7px 12px;font-size:13px;font-weight:700}
+.btn.s{padding:5px 9px;font-size:12px}.btn.alt{background:#e4ddcc;color:var(--ink)}.btn.red{background:var(--red)}.btn.gold{background:var(--gold);color:var(--ink)}
+.btn:disabled{opacity:.4}
+.acts{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.kv{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px dashed var(--line);font-size:13px}
+.kv span{color:var(--mute)}
+.log{font-size:12.5px;padding:4px 0;border-bottom:1px solid var(--line);line-height:1.4}
+.log small{color:var(--mute);margin-right:6px}
+.log.bad{color:#9a2a1a}.log.good{color:#3a6a1a}.log.big{font-weight:700}
+.grades{display:flex;flex-wrap:wrap;gap:3px}
+.grades i{font-style:normal;width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;background:#e3eed6;color:#4a7a2a}
+.grades i.b{background:#e8eef2;color:var(--blue)}.grades i.c{background:#f7dcd5;color:var(--red)}
+/* 選單 */
+#menu{position:fixed;z-index:20;background:var(--card);border-radius:14px;box-shadow:0 6px 24px rgba(0,0,0,.3);padding:8px;min-width:200px;max-width:min(320px,92vw);max-height:60vh;overflow-y:auto}
+#menu .mt{font-weight:700;padding:4px 6px 6px;border-bottom:1px solid var(--line);margin-bottom:4px;display:flex;justify-content:space-between;gap:8px}
+#menu .mt small{font-weight:400;color:var(--mute)}
+#menu button.mi{display:block;width:100%;text-align:left;padding:9px 8px;border-radius:9px;font-size:14px}
+#menu button.mi:active,#menu button.mi:hover{background:#f1ead8}
+#menu button.mi small{display:block;color:var(--mute);font-size:11.5px}
+#menu button.mi.task{border-left:4px solid var(--red);background:#fff6f2}
+/* 覆蓋視窗 */
+.ov{position:fixed;inset:0;z-index:30;background:rgba(20,28,40,.55);display:flex;align-items:center;justify-content:center;padding:16px}
+.box{background:var(--paper);border-radius:18px;max-width:520px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 10px 40px rgba(0,0,0,.4);padding:18px}
+.box h2{margin:0 0 10px;font-size:20px;display:flex;align-items:center;gap:8px}
+.box p{white-space:pre-line;line-height:1.65;margin:0 0 14px;font-size:15px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opts .btn{padding:11px 14px;font-size:15px;text-align:left}
+.stamp{display:inline-block;border:2px solid var(--red);color:var(--red);border-radius:6px;padding:0 6px;font-size:13px;transform:rotate(-6deg)}
+/* 地圖 */
+#mapBox{max-width:640px;padding:12px}
+#mapCv{width:100%;aspect-ratio:4/3;border-radius:12px;display:block;touch-action:none}
+.locList{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px}
+.locList button{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:7px;text-align:left;font-size:13px}
+.locList button small{display:block;color:var(--mute);font-size:11px}
+.locList button.here{border-color:var(--red);background:#fff2ee}
+/* 標題 */
+#title{position:fixed;inset:0;z-index:40;display:flex;align-items:center;justify-content:center;padding:16px;background:linear-gradient(180deg,#8fc6ec 0%,#dff2fb 45%,#9cc25a 46%,#e2b84a 100%)}
+#title .box{text-align:center;background:rgba(247,243,232,.96)}
+#title h1{margin:4px 0 2px;font-size:30px;letter-spacing:2px;color:var(--blue)}
+#title .sub{color:var(--mute);font-size:13px;margin-bottom:14px;line-height:1.6}
+#title .opts .btn{text-align:center}
+.form{display:grid;gap:9px;text-align:left;font-size:14px}
+.form label{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.form input[type=text]{flex:1;font:inherit;padding:7px 10px;border-radius:10px;border:1px solid var(--line);background:#fff;max-width:200px}
+.seg{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+.seg button{min-width:32px;height:30px;border-radius:9px;background:#e4ddcc;font-size:13px;padding:0 8px}
+.seg button.on{background:var(--blue);color:#fff}
+.sw{width:26px!important;min-width:26px!important;border:2px solid transparent}.sw.on{border-color:var(--ink)!important}
+#pv{width:120px;height:150px;display:block;margin:0 auto;background:radial-gradient(circle at 50% 70%,#fff8e6,#efe4d2);border-radius:14px}
+.end h2{justify-content:center}
+.end .epi{font-size:15px;text-align:center;color:var(--mute);margin:0 0 12px}
+#toast{position:fixed;left:50%;top:40%;transform:translate(-50%,-50%);z-index:50;background:rgba(43,38,34,.88);color:#fff;padding:9px 16px;border-radius:12px;font-size:14px;pointer-events:none;transition:opacity .3s;text-align:center;max-width:80vw}
+@media(max-width:560px){#top{gap:4px}.chip{padding:4px 8px;font-size:12px}#clock{flex-direction:column;align-items:flex-start;gap:0;padding:3px 10px}#clock b{font-size:16px}#date{font-size:10.5px}#speed button{width:28px;height:26px;font-size:11px}.fd{font-size:11.5px}.rb{width:46px;height:46px;font-size:18px}#mood{display:none}}
+</style>
+</head>
+<body>
+<canvas id="cv"></canvas>
+<div id="top" hidden>
+  <div class="chip" id="clock"><b id="clk">06:30</b><span id="date"></span></div>
+  <div class="chip" id="speed"><button data-s="0">❚❚</button><button data-s="1" class="on">▶</button><button data-s="2">▶▶</button><button data-s="3">▶▶▶</button></div>
+  <div class="chip" id="moneyC">💰 <b id="money">0</b></div>
+  <div class="chip" id="moodC">🙂 <span id="mood"></span></div>
+</div>
+<div id="loc" hidden><div class="chip"><b id="locN"></b><small id="locS"></small></div></div>
+<div id="rightBtns" hidden>
+  <button class="rb" id="bMap">🗺️<small>地圖</small></button>
+  <button class="rb" id="bAuto">🤖<small>自動</small></button>
+  <button class="rb" id="bSave">💾<small>存檔</small></button>
+</div>
+<div id="feed"></div>
+<div id="bottom" hidden>
+  <div id="queue"></div>
+  <div id="sheet" hidden></div>
+  <div id="tabs">
+    <button data-t="need"><i>❤️</i>需求</button>
+    <button data-t="task"><i>📋</i>案件<span class="dot" id="taskDot" hidden></span></button>
+    <button data-t="ppl"><i>👥</i>人物</button>
+    <button data-t="skill"><i>📚</i>技能</button>
+    <button data-t="job"><i>🏛️</i>職涯</button>
+    <button data-t="life"><i>🏠</i>生活</button>
+    <button data-t="log"><i>📜</i>紀錄</button>
+  </div>
+</div>
+<div id="menu" hidden></div>
+<div class="ov" id="evOv" hidden><div class="box" id="evBox"></div></div>
+<div class="ov" id="mapOv" hidden><div class="box" id="mapBox"><h2>🗺️ 池上鄉 <small style="font-size:13px;color:var(--mute);font-weight:400">點地點騎車前往</small></h2><canvas id="mapCv"></canvas><div class="locList" id="locList"></div><div style="text-align:right;margin-top:8px"><button class="btn alt" id="mapClose">關閉</button></div></div></div>
+<div class="ov" id="endOv" hidden><div class="box end" id="endBox"></div></div>
+<div id="title"><div class="box" id="titleBox"></div></div>
+<div id="toast" style="opacity:0"></div>
+<script>
+/* 模組 1／5：資料 — 地點、物件與動作、工作案件、隨機事件、人物、職涯、行事曆
+   參考：臺灣省村里幹事服務要點（平地鄉鎮上午集中公所辦公、下午赴村辦公處）、池上鄉公所原住民族事務所服務項目。
+   人物與事件皆為虛構。 */
+(function () {
+'use strict';
+const D = window.D = {};
+
+/* ---------- 時間 ---------- */
+D.MONTH_DAYS = 7;            /* 一個月濃縮成一週：週一到週五上班、週六日休假 */
+D.YEAR_DAYS = 12 * 7;
+D.START_YEAR = 115;          /* 民國 115 年 */
+D.WEEK = ['一', '二', '三', '四', '五', '六', '日'];
+
+/* ---------- 地點 ---------- */
+D.LOCS = {
+  home: { n: '租屋處', sub: '福原村・鄉內市區', map: [0.30, 0.34], theme: 'home' },
+  office: { n: '池上鄉公所', sub: '原住民族事務所', map: [0.38, 0.30], theme: 'office' },
+  vo: { n: '大埔村辦公處', sub: '村幹事下午駐點', map: [0.50, 0.52], theme: 'vo' },
+  village: { n: '大埔村聚落', sub: '家戶訪問・查報', map: [0.56, 0.62], theme: 'village' },
+  tribe: { n: '部落聚會所', sub: 'Kalokapuk 大埔部落', map: [0.46, 0.70], theme: 'tribe' },
+  care: { n: '文化健康站', sub: '部落長者照顧', map: [0.62, 0.70], theme: 'care' },
+  field: { n: '稻田與伯朗大道', sub: '農損勘查・騎車散心', map: [0.72, 0.30], theme: 'field' },
+  town: { n: '中正路街區', sub: '便當店・超商・衛生所', map: [0.34, 0.46], theme: 'town' },
+  lake: { n: '大坡池', sub: '散步・發呆', map: [0.62, 0.46], theme: 'lake' },
+};
+/* 機車移動時間（分鐘）依地圖距離估算 */
+D.travel = (a, b) => { if (a === b) return 0; const p = D.LOCS[a].map, q = D.LOCS[b].map; return Math.max(4, Math.round(Math.hypot(p[0] - q[0], p[1] - q[1]) * 38)); };
+
+/* ---------- 需求 ----------
+   每小時自然變化（清醒時） */
+D.NEEDS = { hunger: { n: '飽足', ic: '🍚', dec: 6 }, energy: { n: '精力', ic: '⚡', dec: 4.2 }, hygiene: { n: '清潔', ic: '🚿', dec: 2.6 }, social: { n: '社交', ic: '💬', dec: 2.2 }, fun: { n: '娛樂', ic: '🎈', dec: 2.8 } };
+D.SKILLS = { admin: { n: '行政公文', ic: '📄' }, law: { n: '法規熟悉', ic: '⚖️' }, talk: { n: '溝通協調', ic: '🤝' }, lang: { n: '阿美族語', ic: '🗣️' }, body: { n: '體能', ic: '🏃' }, cook: { n: '料理', ic: '🍳' } };
+
+/* ---------- 物件與動作 ----------
+   e：每分鐘對需求的影響；sk：技能經驗；w：時段限制 [起, 迄] 小時；cost：花費 */
+const A = (n, dur, e, o) => Object.assign({ n, dur, e: e || {} }, o || {});
+D.OBJ = {
+  home: [
+    { id: 'bed', n: '床', x: 0.16, acts: { sleep: A('睡覺', 480, { energy: 0.21, stress: -0.04 }, { sleep: 1 }), nap: A('小睡 1 小時', 60, { energy: 0.25 }) } },
+    { id: 'desk', n: '書桌', x: 0.36, acts: { study: A('讀法規與函釋', 60, { energy: -0.06, fun: -0.02 }, { sk: { law: 1 } }), lang: A('上線上族語課', 60, { energy: -0.05, fun: 0.02 }, { sk: { lang: 1.2 } }), web: A('滑手機上網', 45, { fun: 0.28, energy: -0.02 }) } },
+    { id: 'kitchen', n: '電鍋與冰箱', x: 0.56, acts: { cook: A('煮一頓飯', 50, { hunger: 1.1, fun: 0.05 }, { sk: { cook: 1 }, cost: 90 }), snack: A('吃泡麵', 15, { hunger: 2.4 }, { cost: 35 }) } },
+    { id: 'tv', n: '電視', x: 0.74, acts: { tv: A('看電視', 60, { fun: 0.4, energy: -0.02, stress: -0.08 }), call: A('和家人視訊', 30, { social: 1.4, stress: -0.05 }) } },
+    { id: 'bath', n: '浴室', x: 0.9, acts: { shower: A('洗澡', 20, { hygiene: 4.5, stress: -0.1 }) } },
+  ],
+  office: [
+    { id: 'clock', n: '打卡機', x: 0.08, acts: { clockin: A('打卡上班', 2, {}, { clock: 'in' }), clockout: A('打卡下班', 2, {}, { clock: 'out' }) } },
+    { id: 'counter', n: '服務櫃檯', x: 0.28, acts: {}, task: 'counter' },
+    { id: 'desk', n: '我的辦公桌', x: 0.5, acts: {}, task: 'desk' },
+    { id: 'chief', n: '所長座位', x: 0.7, npc: 'chief', acts: { report: A('向所長回報進度', 15, { stress: -0.05 }, { rel: 2 }) } },
+    { id: 'meeting', n: '會議室', x: 0.88, acts: {}, task: 'meeting' },
+  ],
+  vo: [
+    { id: 'board', n: '公布欄', x: 0.18, acts: {}, task: 'board' },
+    { id: 'desk', n: '村辦公處辦公桌', x: 0.45, acts: {}, task: 'vo' },
+    { id: 'head', n: '村長', x: 0.72, npc: 'head', acts: {} },
+  ],
+  village: [
+    { id: 'house1', n: '住戶甲', x: 0.15, acts: {}, task: 'house' },
+    { id: 'house2', n: '住戶乙', x: 0.42, acts: {}, task: 'house' },
+    { id: 'lamp', n: '路燈與水溝', x: 0.64, acts: {}, task: 'street' },
+    { id: 'house3', n: '住戶丙', x: 0.85, acts: {}, task: 'house' },
+  ],
+  tribe: [
+    { id: 'elder', n: '耆老', x: 0.3, npc: 'elder', acts: {} },
+    { id: 'hall', n: '聚會所', x: 0.62, acts: {}, task: 'tribe' },
+  ],
+  care: [
+    { id: 'elders', n: '長輩們', x: 0.35, acts: {}, task: 'care' },
+    { id: 'staff', n: '照服員', x: 0.7, npc: 'carer', acts: {} },
+  ],
+  field: [
+    { id: 'paddy', n: '稻田', x: 0.3, acts: { walk: A('沿著田埂散步', 40, { fun: 0.35, energy: -0.05, stress: -0.2 }, { sk: { body: 0.5 } }) }, task: 'field' },
+    { id: 'bike', n: '腳踏車出租', x: 0.72, acts: { ride: A('騎單車逛伯朗大道', 60, { fun: 0.6, energy: -0.12, stress: -0.3, hygiene: -0.05 }, { sk: { body: 1 }, cost: 100 }) } },
+  ],
+  town: [
+    { id: 'bento', n: '便當店', x: 0.2, acts: { bento: A('吃池上便當', 30, { hunger: 2.6, fun: 0.1 }, { cost: 100 }) } },
+    { id: 'store', n: '便利商店', x: 0.5, acts: { coffee: A('買咖啡', 10, { energy: 1.5, fun: 0.3 }, { cost: 55 }), onigiri: A('買御飯糰', 10, { hunger: 3 }, { cost: 45 }) } },
+    { id: 'clinic', n: '衛生所', x: 0.8, acts: { doctor: A('看診拿藥', 60, { stress: -0.05 }, { cost: 150, heal: 1 }), checkup: A('健康檢查', 90, {}, { cost: 0, checkup: 1 }) } },
+  ],
+  lake: [
+    { id: 'path', n: '環湖步道', x: 0.35, acts: { jog: A('環湖慢跑', 40, { energy: -0.3, fun: 0.25, stress: -0.35, hygiene: -0.15 }, { sk: { body: 1.5 } }), sit: A('坐著看湖發呆', 30, { fun: 0.4, stress: -0.4 }) } },
+    { id: 'friend', n: '散步的人', x: 0.7, npc: 'random', acts: {} },
+  ],
+};
+
+/* ---------- 人物（虛構） ---------- */
+D.NPCS = {
+  chief: { n: '林所長', role: '原民所所長', look: { sk: 2, hair: 1, hc: 0, top: '#3d6e8c', g: 'm', age: 52 } },
+  head: { n: '陳村長', role: '大埔村村長', look: { sk: 2, hair: 3, hc: 2, top: '#c8402a', g: 'm', age: 61 } },
+  elder: { n: 'Kacaw 耆老', role: '部落耆老', look: { sk: 3, hair: 4, hc: 3, top: '#e9c46a', g: 'm', age: 78, deco: 'amis' } },
+  carer: { n: 'Panay', role: '文健站照服員', look: { sk: 3, hair: 2, hc: 0, top: '#2a9d8f', g: 'f', age: 41 } },
+  coworker: { n: '黃小姐', role: '民政課同事', look: { sk: 1, hair: 5, hc: 1, top: '#e76f51', g: 'f', age: 33 } },
+  coworker2: { n: '張先生', role: '萬安村村幹事', look: { sk: 1, hair: 0, hc: 0, top: '#6d597a', g: 'm', age: 29 } },
+  lisin: { n: 'Lisin', role: '部落青年、返鄉經營民宿', look: { sk: 3, hair: 6, hc: 0, top: '#8ab17d', g: 'f', age: 27 }, date: 1 },
+  ofad: { n: 'Ofad', role: '部落青年、稻農', look: { sk: 3, hair: 1, hc: 0, top: '#f4a261', g: 'm', age: 28 }, date: 1 },
+  yuting: { n: '許小姐', role: '衛生所護理師', look: { sk: 1, hair: 7, hc: 1, top: '#ffffff', g: 'f', age: 28 }, date: 1 },
+  kai: { n: '吳先生', role: '池上國中老師', look: { sk: 2, hair: 0, hc: 1, top: '#264653', g: 'm', age: 30 }, date: 1 },
+};
+
+/* ---------- 工作案件 ----------
+   at：執行地點與物件；t：每次花費分鐘；n2：需要幾次；sk：主要技能；pts：績效；trust：村民信任
+   when：月份；p：每個工作日出現機率；due：期限（天） */
+const T = (id, n, at, t, o) => Object.assign({ id, n, at, t, n2: 1, sk: 'admin', pts: 3, trust: 1, due: 4, p: 0.2, desc: '' }, o);
+D.TASKS = [
+  /* 上午：公所（原民所業務） */
+  T('aid_emerg', '受理原住民急難救助申請', 'office.counter', 40, { sk: 'talk', pts: 4, trust: 2, p: 0.35, desc: '民眾遭遇重大變故，臨櫃送件。核對戶籍謄本、證明文件與存摺影本。' }),
+  T('aid_med', '受理原住民醫療補助', 'office.counter', 30, { sk: 'talk', p: 0.35, desc: '核對診斷證明、醫療收據與村長證明。' }),
+  T('aid_death', '受理原住民死亡救助', 'office.counter', 35, { sk: 'talk', pts: 4, trust: 2, p: 0.15, desc: '家屬來辦理，需要耐心與同理。' }),
+  T('aid_skill', '技術士檢定獎勵金申請', 'office.counter', 20, { p: 0.15, desc: '族人考到證照，核對證照影本後簽辦撥款。' }),
+  T('house_fix', '中低收入戶原住民修繕住宅補助', 'office.desk', 60, { n2: 2, sk: 'law', pts: 7, trust: 3, due: 7, p: 0.12, desc: '審查估價單、所得財產證明，還要到現場拍照確認修繕位置。', site: 'village.house' }),
+  T('land_add', '原住民保留地增劃編申請', 'office.desk', 70, { n2: 2, sk: 'law', pts: 6, due: 8, p: 0.12, desc: '查詢地籍資料、核對切結書與使用證明，彙整報縣府。' }),
+  T('land_comp', '保留地禁伐補償彙整', 'office.desk', 60, { sk: 'admin', pts: 5, due: 6, p: 0.08, when: [3, 4, 5], desc: '整理禁伐補償申請名冊與帳戶資料。' }),
+  T('doc', '簽辦上級來文', 'office.desk', 30, { n2: 1, pts: 2, trust: 0, p: 0.7, due: 3, desc: '縣府原住民族行政處來函，簽擬辦理方式送所長核章。' }),
+  T('petition', '回覆民眾陳情', 'office.desk', 45, { sk: 'talk', pts: 4, trust: 2, p: 0.2, due: 3, desc: '鄉長信箱轉來的陳情案，要查明後在期限內回覆。' }),
+  T('meet', '參加村里工作會報', 'office.meeting', 60, { pts: 3, trust: 0, p: 0, due: 1, fixed: 1, desc: '公所每月召開的工作會報，要把會報事項帶回去向村長報告。' }),
+  /* 下午：大埔村 */
+  T('visit', '年度家戶普訪', 'village.house', 50, { n2: 1, sk: 'talk', pts: 2, trust: 3, p: 0.55, due: 5, desc: '每年至少普遍訪問轄區每一戶，更新戶長資料卡。' }),
+  T('visit_poor', '獨居長者與低收入戶關懷訪視', 'village.house', 45, { sk: 'talk', pts: 4, trust: 4, p: 0.3, due: 4, desc: '了解生活狀況，需要時協助轉介社會課。' }),
+  T('report', '查報路燈故障與道路坑洞', 'village.street', 30, { pts: 2, trust: 2, p: 0.35, due: 3, desc: '現場拍照、填查報表，送建設課處理。' }),
+  T('dengue', '登革熱孳生源巡查', 'village.street', 45, { sk: 'body', pts: 3, trust: 2, p: 0.6, due: 3, when: [5, 6, 7, 8, 9], desc: '巡查積水容器、宣導「巡倒清刷」。' }),
+  T('military', '分送役男徵集令', 'village.house', 30, { sk: 'admin', pts: 3, trust: 1, p: 0.15, due: 3, desc: '把徵集令送到役男家，確認本人或家屬簽收。' }),
+  T('tax', '協助房屋稅催徵', 'village.house', 35, { sk: 'talk', pts: 3, trust: 0, p: 0.4, due: 4, when: [5], desc: '協助稅務局通知逾期未繳的住戶。' }),
+  T('tax2', '協助地價稅催徵', 'village.house', 35, { sk: 'talk', pts: 3, trust: 0, p: 0.4, due: 4, when: [11], desc: '協助稅務局通知逾期未繳的住戶。' }),
+  T('neighbor', '召開鄰長會議', 'vo.desk', 60, { sk: 'talk', pts: 4, trust: 3, p: 0, due: 3, fixed: 1, desc: '和村長一起召開，作成會議紀錄。' }),
+  T('cert', '代繕申請書、開立村辦公處證明', 'vo.desk', 25, { pts: 2, trust: 2, p: 0.4, due: 2, desc: '村民來辦公處請你幫忙填表、開證明。' }),
+  T('notice', '張貼政令宣導公告', 'vo.board', 15, { pts: 1, trust: 1, p: 0.4, due: 3, desc: '把公所與縣府的宣導海報貼上公布欄。' }),
+  T('care_visit', '到文化健康站關懷長者', 'care.elders', 50, { sk: 'lang', pts: 3, trust: 4, p: 0.3, due: 5, desc: '和長輩聊天、了解需求，會說族語長輩會特別開心。' }),
+  T('tribe_meet', '列席部落會議', 'tribe.hall', 90, { sk: 'lang', pts: 5, trust: 5, p: 0, due: 3, fixed: 1, desc: '說明公所的補助與計畫，聽取部落的意見。' }),
+  /* 季節性 */
+  T('ilisin', '協助豐年祭（Ilisin）行政', 'tribe.hall', 120, { n2: 2, sk: 'lang', pts: 8, trust: 8, p: 0.6, due: 4, when: [7, 8], desc: '協助場地、交通與經費申請；祭儀期間尊重部落規範，跟著長輩指示做。' }),
+  T('ilisin_acc', '豐年祭補助經費核銷', 'office.desk', 70, { n2: 2, sk: 'admin', pts: 6, trust: 1, p: 0.5, due: 6, when: [9], desc: '整理單據、成果照片，送主計室核銷。' }),
+  T('festival', '秋收稻穗藝術節交通與環境支援', 'field.paddy', 120, { sk: 'body', pts: 6, trust: 3, p: 0.7, due: 3, when: [10], desc: '公所動員支援：引導遊客、維持環境清潔。' }),
+  T('elderly', '重陽敬老禮金發放', 'village.house', 40, { n2: 3, sk: 'talk', pts: 6, trust: 6, p: 0.6, due: 5, when: [9], desc: '把敬老禮金與賀卡送到長輩手上。' }),
+  T('crop_loss', '颱風農業災害勘查', 'field.paddy', 90, { n2: 2, sk: 'body', pts: 8, trust: 6, p: 0, due: 5, desc: '稻穀倒伏，受理農民申請並到田間會勘。' }),
+  T('election', '選舉人名冊公告與選務協助', 'vo.board', 60, { n2: 2, pts: 5, trust: 1, p: 0, due: 6, desc: '公告選舉人名冊，協助投開票所布置與講習。' }),
+];
+D.TASK = Object.fromEntries(D.TASKS.map(t => [t.id, t]));
+
+/* ---------- 職涯 ----------
+   薪資為遊戲簡化的大略數字（含加給） */
+D.RANKS = [
+  { n: '村幹事', grade: '委任第三職等', pay: 38000 },
+  { n: '村幹事', grade: '委任第四職等', pay: 41500 },
+  { n: '村幹事', grade: '委任第五職等', pay: 45500 },
+  { n: '原民所課員', grade: '薦任第六職等', pay: 52000, exam: 1 },
+  { n: '原民所課員', grade: '薦任第七職等', pay: 57000 },
+  { n: '原住民族事務所所長', grade: '薦任第八職等', pay: 66000 },
+];
+D.RETIRE_AGE = 65;
+
+/* ---------- 行事曆 ---------- */
+D.SEASON = m => (m <= 2 || m === 12 ? '冬' : m <= 5 ? '春' : m <= 8 ? '夏' : '秋');
+D.MONTH_NOTE = {
+  1: '一期稻作春耕準備、農曆新年', 2: '春節、一期稻作插秧', 3: '春耕', 4: '清明連假、保留地禁伐補償申請', 5: '房屋稅開徵、梅雨與登革熱防治', 6: '一期稻作收割、端午',
+  7: '颱風季、各部落陸續舉辦豐年祭', 8: '豐年祭、颱風季', 9: '中秋、重陽敬老、豐年祭核銷', 10: '池上秋收稻穗藝術節、二期稻作收割', 11: '地價稅開徵、選舉年投票月', 12: '年終考績',
+};
+})();
+
+</script>
+<script>
+/* 模組 2／5：人生模擬 — 時間、需求、動作佇列、上班規則（打卡、上午公所下午駐村）、案件、薪水開銷、考績升遷、
+   人際關係與家庭、健康老化與死亡、隨機事件、自動生活、存檔 */
+(function () {
+'use strict';
+const D = window.D;
+const U = window.U = {
+  clamp: (v, a, b) => (v < a ? a : v > b ? b : v), rand: (a, b) => a + Math.random() * (b - a), ri: (a, b) => Math.floor(a + Math.random() * (b - a + 1)), pick: a => a[Math.floor(Math.random() * a.length)],
+  fmt: n => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+  hm: m => `${String(Math.floor(m / 60) % 24).padStart(2, '0')}:${String(Math.floor(m % 60)).padStart(2, '0')}`,
+};
+const S = window.S = {};
+const SIM = window.SIM = { ev: [] };
+const emit = o => SIM.ev.push(o);
+
+/* ---------- 新人生 ---------- */
+SIM.newLife = function (o) {
+  for (const k of Object.keys(S)) delete S[k];
+  Object.assign(S, {
+    v: 1, name: o.name, g: o.g, look: o.look, age: o.age, day: 0, min: 6 * 60 + 30, loc: 'home', x: 0.2, face: 1, walkTo: null,
+    needs: { hunger: 70, energy: 85, hygiene: 80, social: 60, fun: 60 }, stress: 25, health: 92,
+    sk: { admin: 0, law: 0, talk: 0, lang: o.lang ? 20 : 0, body: 10, cook: 5 },
+    money: 30000, rank: 0, step: 0, years: 0, perf: 0, grades: [], clocked: false, clockOut: false, late: 0, absent: 0, early: 0, retired: false, examYear: -1, rankYears: 0,
+    tasks: [], trust: 40, visits: 0, visitGoal: 120, rel: {}, spouse: null, kids: [], house: 'rent', upgrades: {},
+    queue: [], cur: null, log: [], flags: {}, eventQ: [], typhoon: 0, sickT: 0, ill: null,
+    stats: { cases: 0, visits: 0, helped: 0, overtime: 0, festivals: 0, fails: 0, workDays: 0, gradeA: 0, kills: 0 },
+    dead: null, auto: false, autoFull: false,
+  });
+  for (const k in D.NPCS) S.rel[k] = { v: k === 'chief' || k === 'head' ? 10 : 0, met: ['chief', 'head', 'coworker', 'coworker2'].includes(k), stage: '' };
+  SIM.log(`民國 ${D.START_YEAR} 年 1 月，${S.name} 錄取池上鄉公所，派任原住民族事務所，兼大埔村村幹事。今天是第一天上班！`, 'big');
+  SIM.queueEvent('first_day');
+  SIM.genTasks(SIM.cal()); SIM.addTask('doc', { due: 2 }); SIM.addTask('visit', { due: 5 });
+};
+
+/* ---------- 時間與日曆 ---------- */
+SIM.cal = (day = S.day) => { const y = Math.floor(day / D.YEAR_DAYS), m = Math.floor((day % D.YEAR_DAYS) / D.MONTH_DAYS) + 1, d = day % D.MONTH_DAYS + 1; return { y: D.START_YEAR + y, yi: y, m, d, w: d - 1, weekend: d >= 6 }; };
+SIM.isWorkday = (day = S.day) => { const c = SIM.cal(day); if (c.weekend) return false; if (c.m === 2 && c.d <= 2) return false; /* 春節連假 */ if (c.m === 4 && c.d === 1) return false; /* 清明 */ return !S.retired; };
+SIM.workHours = () => SIM.isWorkday() && S.min >= 8 * 60 && S.min < 17.5 * 60;
+SIM.lunch = () => S.min >= 12 * 60 && S.min < 13.5 * 60;
+SIM.dateStr = () => { const c = SIM.cal(); return `${c.y} 年 ${c.m} 月 第 ${c.d} 天（週${D.WEEK[c.w]}）`; };
+SIM.log = function (m, kind) { S.log.push({ d: S.day, t: S.min, m, kind }); if (S.log.length > 160) S.log.shift(); emit({ k: 'log', m, kind }); };
+
+/* ---------- 技能 ---------- */
+SIM.lv = k => Math.min(10, Math.floor(Math.sqrt((S.sk[k] || 0) / 12)));
+SIM.addSk = function (k, v) { const a = SIM.lv(k); S.sk[k] = (S.sk[k] || 0) + v; const b = SIM.lv(k); if (b > a) { SIM.log(`${D.SKILLS[k].n} 升到 ${b} 級！`, 'good'); emit({ k: 'skill', s: k, lv: b }); } };
+
+/* ---------- 心情 ---------- */
+SIM.mood = function () { const n = S.needs; const avg = (n.hunger + n.energy + n.hygiene + n.social + n.fun) / 5; return U.clamp(avg - S.stress * 0.35 + (S.health - 70) * 0.15 + (S.spouse ? 5 : 0), 0, 100); };
+SIM.moodName = () => { const m = SIM.mood(); return m > 75 ? '心情很好' : m > 55 ? '還不錯' : m > 35 ? '有點累' : m > 18 ? '心情低落' : '快撐不住了'; };
+
+/* ---------- 動作 ---------- */
+/* 動作結構：{ kind: 'obj'|'task'|'npc'|'go', loc, obj, act, task, npc, n } */
+SIM.push = function (a, front) {
+  if (S.dead) return;
+  if (S.queue.length >= 5 && !front) { emit({ k: 'toast', m: '待辦動作最多 5 個' }); return; }
+  if (front) S.queue.unshift(a); else S.queue.push(a);
+  emit({ k: 'queue' });
+};
+SIM.cancel = function (i) { if (i === -1) { if (S.cur && S.cur.sleep && S.min > 4 * 60 && S.min < 22 * 60) { /* 可以叫醒 */ } S.cur = null; } else S.queue.splice(i, 1); emit({ k: 'queue' }); };
+SIM.objOf = (loc, id) => (D.OBJ[loc] || []).find(o => o.id === id);
+/* 目前要執行的動作 → 決定需要移動或走路 */
+SIM.begin = function () {
+  const a = S.queue[0]; if (!a) return;
+  if (a.kind === 'go') { S.queue.shift(); SIM.startTravel(a.loc); return; }
+  if (a.loc && a.loc !== S.loc) { SIM.startTravel(a.loc); return; }
+  const o = SIM.objOf(S.loc, a.obj);
+  const tx = o ? (o.npc ? o.x - 0.075 : o.x) : S.x;
+  if (Math.abs(tx - S.x) > 0.02) { S.walkTo = tx; return; }
+  S.queue.shift();
+  /* 開始動作 */
+  if (a.kind === 'obj') {
+    const act = o.acts[a.act]; if (!act) return;
+    if (act.cost && S.money < act.cost) { SIM.log('錢不夠了……', 'bad'); return; }
+    if (act.clock === 'in') return SIM.clockIn();
+    if (act.clock === 'out') return SIM.clockOut();
+    if (act.sleep && S.min > 9 * 60 && S.min < 19 * 60) { emit({ k: 'toast', m: '現在不是睡覺時間，試試小睡' }); return; }
+    if (act.cost) S.money -= act.cost;
+    let dur = act.dur;
+    if (act.sleep) { const wake = SIM.isWorkday(S.min < 6 * 60 ? S.day : S.day + 1) ? 6.5 * 60 : 8 * 60; dur = ((wake - S.min) + 1440) % 1440 || 480; dur = U.clamp(dur, 60, 720); }
+    S.cur = { kind: 'obj', obj: a.obj, act: a.act, n: act.n, left: dur, tot: dur, e: act.e, sk: act.sk, sleep: act.sleep, heal: act.heal, checkup: act.checkup, rel: act.rel ? [o.npc, act.rel] : null };
+  } else if (a.kind === 'task') {
+    const t = S.tasks.find(q => q.uid === a.uid); if (!t) return;
+    const T = D.TASK[t.id];
+    if (!SIM.isWorkday()) { emit({ k: 'toast', m: '今天放假，公務等上班日再處理' }); return; }
+    if (!S.clocked) { emit({ k: 'toast', m: '先到公所打卡上班' }); return; }
+    if (S.clockOut) { emit({ k: 'toast', m: '已經打卡下班了，明天再處理' }); return; }
+    S.cur = { kind: 'task', uid: t.uid, n: T.n, left: T.t, tot: T.t, e: { energy: -0.05, stress: 0.06, fun: -0.03 } };
+  } else if (a.kind === 'npc') {
+    const N = D.NPCS[a.npc] || { n: '路人' };
+    const m = { chat: ['聊天', 25, { social: 1.4, fun: 0.3 }], ask: ['請教問題', 30, { social: 0.6 }], gift: ['送伴手禮', 10, { social: 0.6 }], meal: ['一起吃飯', 70, { social: 1.2, hunger: 1.6, fun: 0.4 }], confess: ['告白', 15, { social: 0.5 }], propose: ['求婚', 20, { social: 0.5 }], lang: ['請教族語', 40, { social: 0.6 }] }[a.act];
+    if (a.act === 'gift' && S.money < 500) { SIM.log('錢不夠買伴手禮', 'bad'); return; }
+    if (a.act === 'meal' && S.money < 400) { SIM.log('錢不夠吃飯', 'bad'); return; }
+    S.cur = { kind: 'npc', npc: a.npc, act: a.act, n: `${m[0]}：${N.n}`, left: m[1], tot: m[1], e: m[2] };
+  }
+  emit({ k: 'queue' });
+};
+SIM.startTravel = function (to) {
+  const t = Math.round(D.travel(S.loc, to) * (S.upgrades.scooter ? 0.75 : 1));
+  S.cur = { kind: 'travel', to, n: `騎機車前往${D.LOCS[to].n}`, left: t, tot: t, e: { energy: -0.03 } };
+  /* 太累騎車可能出事 */
+  if (S.needs.energy < 12 && Math.random() < 0.05) S.cur.crash = 1;
+  emit({ k: 'queue' });
+};
+SIM.finish = function () {
+  const c = S.cur; S.cur = null;
+  if (c.kind === 'travel') {
+    S.loc = c.to; S.x = 0.05; S.walkTo = null;
+    if (c.crash) { S.health -= 25; S.stress += 20; SIM.log('太疲倦騎車，在台9線旁跌倒受傷了……', 'bad'); SIM.queueEvent('crash'); }
+    emit({ k: 'arrive', loc: c.to });
+    return;
+  }
+  if (c.kind === 'obj') {
+    if (c.heal) { if (S.ill) { SIM.log(`看完醫生，${S.ill.n}好多了。`, 'good'); S.ill = null; } S.health = Math.min(100, S.health + 4); }
+    if (c.checkup) { SIM.log(`健康檢查結果：健康指數 ${Math.round(S.health)}。${S.health < 55 ? '醫生要你多休息、多運動。' : '大致正常。'}`, S.health < 55 ? 'bad' : 'good'); S.flags.checkupYear = SIM.cal().yi; }
+    if (c.sleep) SIM.log(`睡醒了，${U.hm(S.min)}。`, '');
+    if (c.rel) { SIM.rel(c.rel[0], c.rel[1]); SIM.addSk('admin', 0.5); }
+    return;
+  }
+  if (c.kind === 'task') return SIM.taskDone(c.uid);
+  if (c.kind === 'npc') return SIM.npcDone(c.npc, c.act);
+};
+
+/* ---------- 打卡 ---------- */
+SIM.clockIn = function () {
+  if (!SIM.isWorkday()) { emit({ k: 'toast', m: '今天放假喔' }); return; }
+  if (S.clocked) { emit({ k: 'toast', m: '已經打過卡了' }); return; }
+  if (S.min < 7 * 60) { emit({ k: 'toast', m: '公所還沒開門（7:00 以後才能打卡）' }); return; }
+  S.clocked = true; S.stats.workDays++;
+  if (S.min > 8 * 60 + 5) { S.late++; S.perf -= 2; SIM.rel('chief', -2); SIM.log(`遲到了！${U.hm(S.min)} 才打卡。`, 'bad'); }
+  else SIM.log(`${U.hm(S.min)} 打卡上班。`, '');
+  emit({ k: 'sfx', s: 'clock' });
+};
+SIM.clockOut = function () {
+  if (!S.clocked) { emit({ k: 'toast', m: '今天還沒打上班卡' }); return; }
+  if (S.clockOut) { emit({ k: 'toast', m: '已經打過下班卡了' }); return; }
+  if (S.min < 17.5 * 60) { S.early++; S.perf -= 2; SIM.rel('chief', -3); SIM.log('提早下班，被記早退……', 'bad'); }
+  else if (S.min > 19 * 60) { S.stats.overtime++; SIM.log('加班到現在，終於下班了。', ''); }
+  else SIM.log(`${U.hm(S.min)} 打卡下班。`, '');
+  S.clockOut = true; emit({ k: 'sfx', s: 'clock' });
+};
+
+/* ---------- 案件 ---------- */
+let TUID = 1;
+SIM.addTask = function (id, o) {
+  const T = D.TASK[id]; if (!T || S.retired) return;
+  if (S.tasks.filter(t => !t.fixed).length >= 12 && !T.fixed) return;
+  const t = Object.assign({ uid: TUID++, id, left: T.n2, due: S.day + T.due, from: S.day, fixed: T.fixed }, o || {});
+  S.tasks.push(t);
+  return t;
+};
+SIM.taskAt = function (t) { const [loc, obj] = D.TASK[t.id].at.split('.'); return { loc, obj }; };
+SIM.tasksFor = function (loc, obj, kind) {
+  /* 物件上可以做的案件（住戶甲乙丙都算 house） */
+  return S.tasks.filter(t => { const a = SIM.taskAt(t); const site = t.site && t.left === 1 ? D.TASK[t.id].site.split('.') : null; const L = site ? site[0] : a.loc, O = site ? site[1] : a.obj; return L === loc && (O === obj || (O === 'house' && kind === 'house') || O === kind); });
+};
+SIM.taskDone = function (uid) {
+  const t = S.tasks.find(q => q.uid === uid); if (!t) return;
+  const T = D.TASK[t.id];
+  const sk = SIM.lv(T.sk);
+  let ok = 0.72 + sk * 0.03 - Math.max(0, S.stress - 60) / 200 - (S.needs.energy < 15 ? 0.15 : 0) + (SIM.lv('law') * 0.01);
+  if (T.sk === 'lang' && sk < 2) ok -= 0.05;
+  SIM.addSk(T.sk, 2.4); SIM.addSk('admin', 0.8);
+  if (Math.random() > ok) {
+    S.stats.fails++; S.stress += 4;
+    SIM.log(`「${T.n}」出了點差錯（${U.pick(['文件少附一份', '金額算錯', '漏蓋章', '民眾不滿意說明'])}），要重做一次。`, 'bad');
+    emit({ k: 'fail' });
+    return;
+  }
+  t.left--;
+  if (t.left > 0) { SIM.log(`「${T.n}」完成一個階段，還剩 ${t.left} 次。`, ''); emit({ k: 'step' }); return; }
+  S.tasks = S.tasks.filter(q => q !== t);
+  const late = S.day > t.due;
+  S.perf += T.pts * (late ? 0.5 : 1); S.trust = U.clamp(S.trust + T.trust * (late ? 0.4 : 1), 0, 100); S.stats.cases++;
+  if (t.id === 'visit' || t.id === 'visit_poor' || t.id === 'elderly') { S.visits += t.id === 'visit' ? 4 : 1; S.stats.visits++; }
+  if (t.id.startsWith('aid') || t.id === 'house_fix' || t.id === 'visit_poor') S.stats.helped++;
+  if (t.id === 'ilisin') S.stats.festivals++;
+  if (t.id === 'meet') S.flags.meetDone = S.day;
+  if (t.id === 'tribe_meet' || t.id === 'ilisin' || t.id === 'care_visit') SIM.rel('elder', 3);
+  if (t.id === 'neighbor' || t.id === 'cert' || t.id === 'visit') SIM.rel('head', 2);
+  SIM.log(`完成「${T.n}」${late ? '（逾期）' : ''}。績效 +${(T.pts * (late ? 0.5 : 1)).toFixed(0)}`, late ? '' : 'good');
+  emit({ k: 'done', t: t.id });
+  /* 案件後續的小故事 */
+  if (Math.random() < 0.18) SIM.queueEvent(U.pick(['thanks', 'gift_rice', 'angry_citizen', 'paper_more']));
+};
+
+/* ---------- 人際 ---------- */
+SIM.rel = function (k, v) { const r = S.rel[k]; if (!r) return; r.v = U.clamp(r.v + v, -100, 100); r.met = true; };
+SIM.npcDone = function (k, act) {
+  const N = D.NPCS[k], r = S.rel[k] || { v: 0 };
+  const talk = SIM.lv('talk');
+  if (k === 'random') { SIM.addSk('talk', 1); SIM.log(U.pick(['和遛狗的阿姨聊了今年稻子的收成。', '遇到騎單車的遊客問路，熱心幫他們指路。', '和釣魚的阿伯聊起以前大坡池的樣子。']), ''); return; }
+  switch (act) {
+    case 'chat': SIM.rel(k, 3 + talk * 0.4); SIM.addSk('talk', 1.2); SIM.log(`和${N.n}聊了一會兒。`, ''); break;
+    case 'ask': SIM.rel(k, 2); SIM.addSk('law', 2); SIM.log(`向${N.n}請教業務上的問題，學到不少。`, 'good'); break;
+    case 'lang': SIM.rel(k, 4); SIM.addSk('lang', 3); SIM.log(`${N.n}教你幾句阿美族語：Nga'ay ho（你好）、Aray（謝謝）。`, 'good'); break;
+    case 'gift': S.money -= 500; SIM.rel(k, 8); SIM.log(`送了${N.n}一盒池上米餅。`, ''); break;
+    case 'meal': S.money -= 400; SIM.rel(k, 7); SIM.log(`和${N.n}一起吃飯，聊得很開心。`, 'good'); break;
+    case 'confess':
+      if (r.v >= 55 && !S.spouse && Math.random() < 0.4 + r.v / 200) { r.stage = 'dating'; SIM.log(`${N.n}答應和你交往了！`, 'big'); emit({ k: 'love' }); }
+      else { SIM.rel(k, -6); S.stress += 8; SIM.log(`${N.n}說還想再多了解你一點……`, 'bad'); }
+      break;
+    case 'propose':
+      if (r.stage === 'dating' && r.v >= 80 && Math.random() < 0.75) { r.stage = 'married'; S.spouse = k; S.money -= 150000; SIM.log(`${N.n}答應你的求婚了！你們在池上辦了一場溫馨的婚禮（花費 15 萬）。`, 'big'); SIM.queueEvent('wedding'); }
+      else { SIM.rel(k, -8); S.stress += 10; SIM.log(`${N.n}覺得還沒準備好。`, 'bad'); }
+      break;
+  }
+};
+
+/* ---------- 每分鐘 ---------- */
+SIM.tick = function (mins) {
+  for (let i = 0; i < mins && !S.dead; i++) SIM.minute();
+};
+SIM.minute = function () {
+  const c = S.cur, n = S.needs;
+  const prev = S.min;
+  S.min++;
+  if (S.min >= 1440) { S.min = 0; SIM.newDay(); }
+  /* 需求自然變化 */
+  const sleeping = c && c.sleep;
+  for (const k in D.NEEDS) n[k] -= D.NEEDS[k].dec / 60 * (sleeping ? (k === 'energy' ? 0 : 0.35) : 1) * (S.ill && k === 'energy' ? 1.6 : 1);
+  if (S.spouse && S.loc === 'home') n.social += 0.02;
+  /* 正在做的事 */
+  if (c) {
+    const e = c.e || {};
+    for (const k in e) { if (k === 'stress') S.stress += e[k]; else n[k] += e[k] * (k === 'energy' && sleeping && S.upgrades.bed ? 1.2 : 1); }
+    if (c.sk) for (const k in c.sk) SIM.addSk(k, c.sk[k] / 60 * (k === 'law' && S.upgrades.books ? 1.5 : 1));
+    if (sleeping && S.upgrades.aircon) S.stress -= 0.01;
+    if (c.kind === 'task') S.stress += 0.03;
+    if (c.kind === 'npc') S.stress -= 0.03;
+    c.left--;
+    if (c.left <= 0) SIM.finish();
+  } else if (S.walkTo == null) SIM.begin();
+  for (const k in n) n[k] = U.clamp(n[k], 0, 100);
+  /* 壓力與健康 */
+  if (SIM.workHours() && S.clocked && !S.clockOut) S.stress += 0.012 + Math.max(0, S.tasks.filter(t => S.day > t.due).length) * 0.004;
+  else S.stress -= 0.01;
+  if (n.fun > 60) S.stress -= 0.008;
+  S.stress = U.clamp(S.stress, 0, 100);
+  if (n.hunger <= 0) S.health -= 0.01; if (n.energy <= 0) S.health -= 0.01;
+  if (S.stress > 85) S.health -= 0.002;
+  if (c && c.kind === 'obj' && (c.act === 'jog' || c.act === 'ride' || c.act === 'walk')) S.health = Math.min(100, S.health + 0.004);
+  if (S.ill) { S.health -= 0.0015; }
+  /* 精力歸零會昏睡 */
+  if (n.energy <= 0 && !sleeping && (!c || c.kind !== 'travel')) { S.cur = { kind: 'obj', obj: 'faint', act: 'faint', n: '累到睡著了', left: 180, tot: 180, e: { energy: 0.3 } }; SIM.log('撐不住，就地睡著了……', 'bad'); S.queue = []; }
+  /* 上班時間檢查 */
+  if (SIM.isWorkday()) {
+    if (prev < 10 * 60 && S.min >= 10 * 60 && !S.clocked) { S.perf -= 4; SIM.rel('chief', -5); SIM.log('已經十點了還沒到公所，所長打電話來關心……', 'bad'); emit({ k: 'phone' }); }
+    if (S.min === 12 * 60 + 30 && S.clocked && S.loc !== 'office' && S.loc !== 'town' && S.loc !== 'vo') { /* 午休 */ }
+    if (S.min >= 14 * 60 && S.min < 17 * 60 && S.clocked && !S.clockOut && (S.loc === 'home' || S.loc === 'lake') && Math.random() < 0.002) { S.perf -= 3; SIM.rel('chief', -4); SIM.log('上班時間被看到在外面閒晃，所長有點不高興。', 'bad'); }
+    if (S.min === 9 * 60 && S.tasks.some(t => t.id === 'meet' && t.due === S.day) && S.loc !== 'office') SIM.log('工作會報九點開始，快去會議室！', 'bad');
+  }
+  /* 健康與死亡 */
+  if (S.health <= 0) SIM.die(S.age > 70 ? '年老體衰' : S.ill ? `${S.ill.n}惡化` : '身體長期透支');
+};
+
+/* ---------- 每日 ---------- */
+SIM.newDay = function () {
+  const yesterday = S.day;
+  /* 昨天的出勤 */
+  if (SIM.isWorkday(yesterday)) {
+    if (!S.clocked) { S.absent++; S.perf -= 8; SIM.rel('chief', -10); SIM.log('昨天沒有到班，被記曠職一天。', 'bad'); }
+    else if (!S.clockOut) { S.perf -= 1; SIM.log('昨天忘了打下班卡，被人事室提醒。', 'bad'); }
+  }
+  S.day++; S.clocked = false; S.clockOut = false; S.flags.docToday = 0;
+  const c = SIM.cal();
+  S.age += 1 / D.YEAR_DAYS;
+  /* 老化：每天一點點 */
+  const a = S.age; S.health -= (a > 75 ? 0.045 : a > 60 ? 0.024 : a > 45 ? 0.012 : 0.003);
+  if (S.stress < 45 && !S.ill) S.health = Math.min(a < 50 ? 96 : a < 65 ? 88 : 80, S.health + (a < 60 ? 0.05 : 0.02));
+  if (S.ill && --S.ill.d <= 0) { SIM.log(`${S.ill.n}好了。`, 'good'); S.ill = null; }
+  /* 逾期案件 */
+  for (const t of S.tasks) if (S.day > t.due + 0 && !t.warned) { t.warned = 1; S.perf -= 1; S.trust = Math.max(0, S.trust - 1); }
+  S.tasks = S.tasks.filter(t => !(t.fixed && S.day > t.due + 1));
+  /* 月初：薪水與開銷 */
+  if (c.d === 1) SIM.month(c);
+  /* 每日新案件 */
+  if (SIM.isWorkday()) SIM.genTasks(c);
+  /* 颱風 */
+  if (S.typhoon > 0) { S.typhoon--; if (!S.typhoon) { SIM.log('颱風遠離了，開始調查農損。', ''); SIM.addTask('crop_loss'); SIM.addTask('report'); } }
+  /* 隨機事件 */
+  SIM.dailyEvents(c);
+  /* 小孩 */
+  for (const k of S.kids) k.age += 1 / D.YEAR_DAYS;
+  /* 自然死亡風險 */
+  if (a > 68) { const hz = 0.00008 * Math.exp((a - 67) / 5.5) * (1.6 - S.health / 100); if (Math.random() < hz) SIM.die('壽終正寢'); }
+  emit({ k: 'day' });
+};
+SIM.month = function (c) {
+  const R = D.RANKS[S.rank];
+  let pay = S.retired ? Math.round(D.RANKS[S.rank].pay * (0.45 + Math.min(0.3, S.years * 0.01))) : R.pay + S.step * 1100 + Math.floor(S.years) * 120;
+  S.money += pay;
+  let cost = (S.house === 'rent' ? 6500 : 0) + (S.house === 'loan' ? 16000 : 0) + 15000 + S.kids.filter(k => k.age < 22).length * 9000 + (S.age > 70 ? 4000 : 0);
+  cost = Math.round(cost * (1 + c.yi * 0.012));
+  S.money -= cost;
+  if (S.spouse && S.spouse !== 'gone') { const sp = S.age < 65 ? 18000 : 8000; S.money += sp; }
+  if (S.house === 'loan') { S.loanLeft = (S.loanLeft || 240) - 1; if (S.loanLeft <= 0) { S.house = 'own'; SIM.log('房貸繳清了！房子完全是你的了。', 'big'); } }
+  SIM.log(`${c.m} 月 ${S.retired ? '月退俸' : '薪水'}入帳 ${U.fmt(pay)} 元，房租、水電、伙食、保險等開銷 ${U.fmt(cost)} 元。`, '');
+  if (S.money < 0) { S.stress += 6; SIM.log('存款變成負的了，壓力好大……', 'bad'); }
+  /* 年底考績 */
+  if (c.m === 1 && S.day >= D.YEAR_DAYS) SIM.yearEnd();
+  /* 固定會議 */
+  /* 選舉 */
+  const yi = c.yi;
+  if (!S.retired && c.m === 10 && (yi % 4 === 0)) { SIM.addTask('election'); SIM.log('今年是地方公職人員選舉年，選務工作開始了。', ''); }
+  if (!S.retired && c.m === 12 && (yi % 4 === 1)) { SIM.addTask('election'); SIM.log('明年一月要舉行總統副總統與立委選舉，選務工作開始了。', ''); }
+  /* 生日 */
+  if (c.m === 3) emit({ k: 'toast', m: `${Math.floor(S.age)} 歲了` });
+  /* 結婚後可能有孩子 */
+  if (S.spouse && S.kids.length < 3 && S.age < 46 && !S.flags.babyAsk && S.day - (S.flags.lastBaby || 0) > D.YEAR_DAYS * 2 && Math.random() < 0.12) { S.flags.babyAsk = 1; SIM.queueEvent('baby'); }
+  if (S.flags.babyDue && S.day >= S.flags.babyDue) { S.flags.babyDue = 0; const g = Math.random() < 0.5 ? 'm' : 'f'; const nm = U.pick(g === 'm' ? ['小宇', '小翔', '阿浩', '小安'] : ['小晴', '小語', '小米', '小穗']); S.kids.push({ n: nm, g, age: 0 }); SIM.log(`${nm} 出生了！你當${S.g === 'm' ? '爸爸' : '媽媽'}了。`, 'big'); SIM.queueEvent('born'); S.flags.babyAsk = 0; S.flags.lastBaby = S.day; }
+};
+SIM.yearEnd = function () {
+  const y = SIM.cal().y - 1;
+  if (S.retired) return;
+  S.years++; S.rankYears++;
+  const score = S.perf - S.absent * 25 - S.late * 6 - S.early * 6 + (S.visits >= S.visitGoal ? 40 : -60) + S.rel.chief.v * 0.8;
+  let g = score >= 560 ? '甲' : score >= 280 ? '乙' : '丙';
+  if (g === '甲' && Math.random() < 0.15) { g = '乙'; SIM.log('甲等名額有限，今年所長把甲等給了其他同仁……', 'bad'); }
+  S.grades.push(g);
+  let bonus = 0; const R = D.RANKS[S.rank];
+  if (g === '甲') { bonus = R.pay * 1.5; S.step++; S.stats.gradeA++; }
+  else if (g === '乙') { bonus = R.pay; S.step++; }
+  S.money += bonus;
+  SIM.log(`${y} 年考績：${g}等（年度績效 ${Math.round(score)}）。考績獎金 ${U.fmt(bonus)} 元。`, g === '甲' ? 'big' : g === '丙' ? 'bad' : '');
+  emit({ k: 'grade', g, score: Math.round(score) });
+  /* 升遷：同官等內 */
+  const last2 = S.grades.slice(-2), last3 = S.grades.slice(-3);
+  if (S.rank < 2 && S.rankYears >= 1 && (last2.every(x => x === '甲') || (last3.length === 3 && last3.filter(x => x === '甲').length >= 1 && last3.indexOf('丙') < 0))) SIM.promote();
+  else if (S.rank === 3 && S.rankYears >= 3 && last2.every(x => x === '甲')) SIM.promote();
+  else if (S.rank === 4 && S.rankYears >= 3 && S.age >= 38 && last3.filter(x => x === '甲').length >= 2 && S.trust > 65 && Math.random() < 0.22) SIM.promote('所長退休，你被拔擢為原民所所長！');
+  S.perf = 0; S.late = 0; S.absent = 0; S.early = 0; S.visits = 0; S.stress += 5;
+};
+SIM.promote = function (m) { S.rank++; S.rankYears = 0; S.step = 0; const R = D.RANKS[S.rank]; SIM.log(m || `升任${R.n}（${R.grade}）！`, 'big'); SIM.queueEvent('promote'); };
+SIM.genTasks = function (c) {
+  /* 固定：每月兩次工作會報、一次鄰長會議、每季部落會議 */
+  if (c.d === 2 || c.d === 4) SIM.addTask('meet', { due: S.day, fixed: 1 });
+  if (c.d === 3) SIM.addTask('neighbor', { due: S.day + 2, fixed: 1 });
+  if (c.d === 1 && c.m % 3 === 1) SIM.addTask('tribe_meet', { due: S.day + 4, fixed: 1 });
+  for (const T of D.TASKS) {
+    if (!T.p) continue;
+    if (T.when && !T.when.includes(c.m)) continue;
+    let p = T.p * 0.55;
+    if (T.id === 'visit' && S.visits < S.visitGoal * ((c.m) / 12)) p += 0.25;
+    if (Math.random() < p && S.tasks.filter(t => t.id === T.id).length < 2) SIM.addTask(T.id);
+  }
+};
+
+/* ---------- 隨機事件 ---------- */
+SIM.queueEvent = id => { if (!S.eventQ.includes(id)) S.eventQ.push(id); };
+SIM.dailyEvents = function (c) {
+  const r = Math.random;
+  if ((c.m >= 7 && c.m <= 9) && !S.typhoon && r() < 0.05) SIM.queueEvent('typhoon');
+  if (c.m === 3 && c.d === 1 && !S.retired && S.rank === 2 && S.examYear !== c.yi) SIM.queueEvent('exam');
+  if (c.m === 7 && c.d === 1 && S.flags.examSigned === c.yi) SIM.queueEvent('exam_result');
+  if ((c.m === 12 || c.m <= 2) && r() < 0.04 && !S.ill) SIM.queueEvent('flu');
+  if (S.age > 45 && r() < 0.004 && !S.flags.chronic && S.stress > 50) SIM.queueEvent('chronic');
+  if (r() < 0.06) SIM.queueEvent(U.pick(['coworker_dinner', 'chief_extra', 'head_favor', 'elder_story', 'family_call', 'stray_dog', 'power_cut', 'tourist']));
+  if (!S.spouse && S.age < 45 && r() < 0.03) SIM.queueEvent('crush');
+  if (c.m === 7 && c.d === 2) SIM.queueEvent('ilisin_invite');
+  if (c.m === 10 && c.d === 2) SIM.queueEvent('rice_festival');
+  if (!S.retired && S.age >= D.RETIRE_AGE) SIM.queueEvent('retire_must');
+  else if (!S.retired && S.age >= 60 && S.years >= 25 && !S.flags.retireAsked) { S.flags.retireAsked = 1; SIM.queueEvent('retire_opt'); }
+  if (S.kids.some(k => k.age >= 22 && !k.left)) SIM.queueEvent('kid_leave');
+  if (S.spouse && S.age > 70 && r() < 0.002) SIM.queueEvent('spouse_ill');
+  if (S.house === 'rent' && S.money > 900000 && !S.flags.houseAsk) { S.flags.houseAsk = 1; SIM.queueEvent('house'); }
+};
+/* 事件：c 條件、t 標題、x 內文、o 選項 [文字, 結果函式] */
+const npcN = k => D.NPCS[k].n;
+SIM.EVENTS = {
+  first_day: { t: '報到第一天', x: () => `早安！今天是到池上鄉公所報到的第一天。\n\n村幹事的日常：平地鄉的規定是「上午集中在公所辦公，下午到村辦公處」。你在原住民族事務所承辦補助與保留地業務，下午則到大埔村服務。\n\n先到公所打卡（8:00 前），再到辦公桌看看有哪些案件。`, o: [['我準備好了！', () => { S.stress -= 5; }], ['好緊張……', () => { S.stress += 5; SIM.addSk('talk', 1); }]] },
+  thanks: { t: '一封感謝函', x: () => '之前協助申請補助的族人，特地寫了感謝函寄到公所，所長在會報上念了出來。', o: [['謝謝大家', () => { S.perf += 3; S.stress -= 8; SIM.rel('chief', 4); S.trust += 2; }]] },
+  gift_rice: { t: '村民要送你一袋米', x: () => '辦完案子，阿嬤硬是要塞一袋自家種的池上米給你：「沒什麼啦，自己種的！」\n\n（公務員廉政倫理規範：與職務有利害關係者的饋贈，原則上應拒絕。）', o: [['委婉婉拒，謝謝阿嬤的心意', () => { SIM.addSk('talk', 1); S.trust += 1; SIM.log('婉拒了阿嬤的米，阿嬤笑說你這孩子很老實。', 'good'); }], ['收下並依規定向政風登錄', () => { S.perf += 0; SIM.log('依規定登錄後，米轉送給文健站煮給長輩吃。', ''); SIM.rel('carer', 3); }]] },
+  angry_citizen: { t: '臨櫃民眾情緒激動', x: () => '一位民眾的補助申請因為文件不齊被退件，在櫃檯大聲抱怨：「你們公所就是一直刁難人！」', o: [['先倒杯水，耐心聽他說完', () => { const ok = Math.random() < 0.5 + SIM.lv('talk') * 0.06; if (ok) { S.trust += 2; SIM.addSk('talk', 3); SIM.log('民眾冷靜下來了，你一步步教他補件。', 'good'); } else { S.stress += 10; SIM.log('民眾還是很不滿，揚言要投訴……', 'bad'); SIM.addTask('petition'); } }], ['依法說明缺哪些文件', () => { S.stress += 5; SIM.addSk('law', 2); SIM.log('你把應備文件寫在紙上交給他，他悻悻然離開。', ''); }], ['請所長出面處理', () => { SIM.rel('chief', -3); S.stress -= 3; SIM.log('所長出面安撫，但事後提醒你要學著處理。', ''); }]] },
+  paper_more: { t: '縣府要求補資料', x: () => '縣府原住民族行政處來電：上週送的案件少了一份附件，要在三天內補送。', o: [['馬上處理', () => { SIM.addTask('doc', { due: S.day + 3 }); }]] },
+  typhoon: { t: '颱風警報', x: () => '中央氣象署發布颱風警報，災害應變中心開設，全體村幹事要待命，到村內通知低窪地區與獨居長者做好防颱準備。', o: [['加班待命、到村裡巡視', () => { S.typhoon = 2; S.stats.overtime++; S.stress += 12; S.needs.energy -= 25; S.trust += 4; S.perf += 5; SIM.log('冒著風雨通知村民撤離，忙到深夜。', ''); }], ['只在公所接電話', () => { S.typhoon = 2; S.stress += 6; S.perf += 2; SIM.log('在應變中心接了一整晚的電話。', ''); }]] },
+  exam: { t: '升官等考試', x: () => '你已經是委任第五職等。要升到薦任（原民所課員），需要通過升官等考試。要報名今年七月的考試嗎？（法規與行政技能越高越容易考上）', o: [['報名！下班後要更努力讀書', () => { S.flags.examSigned = SIM.cal().yi; S.examYear = SIM.cal().yi; SIM.log('報名了升官等考試，七月放榜。', ''); }], ['今年先不考', () => { S.examYear = SIM.cal().yi; }]] },
+  exam_result: { t: '升官等考試放榜', x: () => { const p = 0.15 + SIM.lv('law') * 0.07 + SIM.lv('admin') * 0.04; S.flags.examPass = Math.random() < p; return S.flags.examPass ? '恭喜！你考上了，升任原民所課員（薦任第六職等）。' : '這次沒有考上，明年再挑戰吧。'; }, o: [['好', () => { if (S.flags.examPass) SIM.promote(); else S.stress += 10; }]] },
+  flu: { t: '感冒了', x: () => '天氣轉涼，你開始喉嚨痛、流鼻水。', o: [['請病假在家休息一天', () => { S.ill = { n: '感冒', d: 4 }; S.flags.sickDay = S.day; if (SIM.isWorkday()) { S.clocked = true; S.clockOut = true; } S.health -= 2; SIM.log('請了病假。記得去衛生所看醫生。', ''); }], ['硬撐著上班', () => { S.ill = { n: '感冒', d: 6 }; S.health -= 5; S.stress += 8; }]] },
+  chronic: { t: '血壓偏高', x: () => '最近常頭痛，量血壓發現偏高。醫生提醒：要規律運動、少熬夜、減少壓力。', o: [['好，會注意', () => { S.flags.chronic = 1; S.health -= 6; }]] },
+  coworker_dinner: { t: '下班聚餐', x: () => `${npcN('coworker')}約大家下班去吃鍋燒意麵。`, o: [['一起去！', () => { SIM.rel('coworker', 6); SIM.rel('coworker2', 4); S.needs.social += 30; S.needs.hunger += 40; S.money -= 250; S.stress -= 8; }], ['今天想早點回家', () => { S.needs.energy += 5; }]] },
+  chief_extra: { t: '所長臨時交辦', x: () => `${npcN('chief')}：「縣府明天要一份原住民族各項補助的統計表，今天下班前可以給我嗎？」`, o: [['沒問題，我加班完成', () => { SIM.rel('chief', 6); S.perf += 4; S.stress += 10; S.needs.energy -= 15; S.stats.overtime++; }], ['老實說今天的案子已經排滿了', () => { SIM.rel('chief', -2); SIM.addTask('doc', { due: S.day + 1 }); }]] },
+  head_favor: { t: '村長的請託', x: () => `${npcN('head')}：「我親戚想申請修繕補助，但他其實不太符合資格……你能不能通融一下？」`, o: [['婉拒，依規定審查', () => { SIM.rel('head', -6); SIM.addSk('law', 2); S.trust += 2; SIM.log('你委婉說明規定，村長雖然有點不高興，但也理解。', ''); }], ['教他準備正確的文件，符合才送', () => { SIM.rel('head', 2); SIM.addSk('talk', 2); }]] },
+  elder_story: { t: '耆老說故事', x: () => `${npcN('elder')}坐在聚會所前，跟你說起年輕時族人從恆春半島一路遷徙到這裡，在池上開墾的故事。`, o: [['坐下來好好聽', () => { SIM.rel('elder', 6); SIM.addSk('lang', 3); S.needs.social += 15; S.stress -= 6; }], ['跟長輩約下次再來', () => { SIM.rel('elder', 1); }]] },
+  family_call: { t: '家裡來電', x: () => '媽媽打電話來：「在池上還習慣嗎？有沒有好好吃飯？」', o: [['聊了很久', () => { S.needs.social += 25; S.stress -= 6; }], ['說在忙，晚點回電', () => { S.stress += 3; }]] },
+  stray_dog: { t: '流浪狗咬人陳情', x: () => '村民反映村內有流浪狗追人，要求公所處理。', o: [['通報縣府動物防疫所並張貼宣導', () => { SIM.addTask('report'); S.trust += 1; }]] },
+  power_cut: { t: '村內停電', x: () => '大埔村部分地區停電，好幾通電話打來問。', o: [['聯絡台電並在村辦公處公告', () => { SIM.addTask('notice'); S.trust += 2; }]] },
+  tourist: { t: '遊客問路', x: () => '一群騎單車的遊客迷路了，問你伯朗大道怎麼走，還想知道哪裡吃得到池上便當。', o: [['熱心介紹', () => { S.needs.social += 10; SIM.addSk('talk', 1); }]] },
+  crush: { t: '心動的感覺', x: () => { const c = Object.keys(D.NPCS).filter(k => D.NPCS[k].date && !S.rel[k].stage); S.flags.crush = U.pick(c); return `最近常想到${npcN(S.flags.crush)}（${D.NPCS[S.flags.crush].role}）。下次見面要不要多聊幾句？`; }, o: [['找機會約對方吃飯', () => { SIM.rel(S.flags.crush, 12); S.rel[S.flags.crush].met = true; SIM.log(`和${npcN(S.flags.crush)}交換了聯絡方式。可以到「人物」裡邀約。`, 'good'); }], ['先專心工作', () => {}]] },
+  ilisin_invite: { t: '豐年祭的邀請', x: () => `${npcN('elder')}：「今年 Ilisin，你也來吧！不只是來幫忙，也一起感謝祖靈。」\n\n豐年祭是阿美族最重要的祭儀，有些儀式不能隨意拍照或參與，要尊重部落的規範。`, o: [['參加並遵守部落規範', () => { SIM.rel('elder', 10); S.trust += 5; S.needs.social += 30; SIM.addSk('lang', 4); S.stats.festivals++; }], ['只做行政支援', () => { SIM.rel('elder', 2); }]] },
+  rice_festival: { t: '秋收稻穗藝術節', x: () => '金黃的稻田裡搭起舞台，全鄉動員迎接遊客。你被分配到交通疏導。', o: [['全力支援', () => { SIM.addTask('festival'); S.perf += 2; }]] },
+  baby: { t: '想要孩子嗎？', x: () => `${npcN(S.spouse)}問你：「我們要不要生個小孩？」`, o: [['好啊！', () => { S.flags.babyDue = S.day + D.MONTH_DAYS * 9; SIM.log('準備迎接新生命！', 'good'); }], ['再等等', () => { S.flags.babyAsk = 0; }]] },
+  wedding: { t: '結婚了', x: () => `你和${npcN(S.spouse)}結婚了，村長和同事們都來喝喜酒。`, o: [['幸福！', () => { S.stress -= 20; S.needs.social = 100; }]] },
+  born: { t: '新生命', x: () => `${S.kids[S.kids.length - 1].n} 出生了！`, o: [['歡迎你來到這個世界', () => { S.stress += 5; S.needs.fun = 100; }]] },
+  promote: { t: '升遷', x: () => `你升任 ${D.RANKS[S.rank].n}（${D.RANKS[S.rank].grade}）。`, o: [['會更努力', () => { S.stress -= 10; }]] },
+  crash: { t: '機車意外', x: () => '疲勞騎車，一個不注意就摔車了。還好沒有大礙，但膝蓋擦傷、手腕扭到。', o: [['以後太累就不騎車', () => {}]] },
+  house: { t: '要不要買房？', x: () => '存了一筆錢，鄉內有一間老透天在賣。頭期款 60 萬，之後每月房貸約 1.6 萬，繳 20 年。', o: [['買！', () => { S.money -= 600000; S.house = 'loan'; S.loanLeft = 240; SIM.log('買下了自己的房子！', 'big'); }], ['繼續租房', () => {}]] },
+  retire_opt: { t: '可以申請退休了', x: () => `你已經服務 ${S.years} 年，符合自願退休條件。要退休嗎？`, o: [['申請退休', () => SIM.retire()], ['再做幾年', () => {}]] },
+  retire_must: { t: '屆齡退休', x: () => `你滿 ${D.RETIRE_AGE} 歲了，依規定屆齡退休。同事們為你辦了歡送會。`, o: [['謝謝大家這些年的照顧', () => SIM.retire()]] },
+  kid_leave: { t: '孩子長大了', x: () => { const k = S.kids.find(q => q.age >= 22 && !q.left); k.left = 1; return `${k.n} 要去外地工作了。`; }, o: [['保重！', () => { S.needs.social -= 20; }]] },
+  spouse_ill: { t: '家人生病', x: () => `${npcN(S.spouse)}住院了，需要照顧。`, o: [['請假陪伴', () => { S.stress += 15; S.money -= 30000; }]] },
+};
+SIM.retire = function () { S.retired = true; S.tasks = []; S.clocked = false; SIM.log(`退休了。服務 ${S.years} 年，之後每月領月退俸。`, 'big'); emit({ k: 'retired' }); };
+SIM.choose = function (id, i) { const E = SIM.EVENTS[id]; if (!E) return; const o = E.o[i]; if (o) o[1](); S.trust = U.clamp(S.trust, 0, 100); S.stress = U.clamp(S.stress, 0, 100); for (const k in S.needs) S.needs[k] = U.clamp(S.needs[k], 0, 100); emit({ k: 'chosen' }); };
+
+/* ---------- 死亡 ---------- */
+SIM.die = function (cause) {
+  if (S.dead) return;
+  S.dead = { cause, age: Math.floor(S.age), date: SIM.dateStr() };
+  S.cur = null; S.queue = [];
+  emit({ k: 'dead' });
+};
+
+/* ---------- 購物 ---------- */
+D.SHOP = [
+  { id: 'bed', n: '獨立筒床墊', price: 18000, d: '睡眠回復精力快 20%' },
+  { id: 'scooter', n: '新機車', price: 75000, d: '移動時間減少 25%' },
+  { id: 'books', n: '法規工具書全套', price: 6000, d: '讀書學法規快 50%' },
+  { id: 'aircon', n: '冷氣', price: 32000, d: '夏天睡得比較好，壓力恢復更快' },
+];
+SIM.buy = function (id) { const it = D.SHOP.find(x => x.id === id); if (!it || S.upgrades[id]) return 'have'; if (S.money < it.price) return 'money'; S.money -= it.price; S.upgrades[id] = 1; SIM.log(`買了${it.n}。`, 'good'); return 'ok'; };
+
+/* ---------- 自動生活（AI 代理） ---------- */
+SIM.autoPlan = function () {
+  if (S.dead || S.cur || S.queue.length || S.walkTo != null || S.eventQ.length) return;
+  const n = S.needs, m = S.min, work = SIM.isWorkday() && !S.retired, H = m / 60;
+  const go = (loc, obj, act) => SIM.push({ kind: 'obj', loc, obj, act });
+  /* 睡覺 */
+  if (H >= 22.5 || H < 6) { if (n.hygiene < 70 && S.loc === 'home') return go('home', 'bath', 'shower'); return go('home', 'bed', 'sleep'); }
+  if (n.energy < 12) return S.loc === 'home' ? go('home', 'bed', 'nap') : go('town', 'store', 'coffee');
+  if (work && !S.clocked && H >= 6.5 && H < 17) {
+    if (n.hunger < 55 && S.loc === 'home' && H < 7.6) return go('home', 'kitchen', 'snack');
+    if (n.hygiene < 50 && S.loc === 'home' && H < 7.6) return go('home', 'bath', 'shower');
+    return go('office', 'clock', 'clockin');
+  }
+  if (work && S.clocked && !S.clockOut) {
+    if (H >= 17.5) return go('office', 'clock', 'clockout');
+    if (SIM.lunch() && n.hunger < 60) return go('town', 'bento', 'bento');
+    if (n.hunger < 18) return go('town', 'store', 'onigiri');
+    /* 有期限的先做；上午偏公所、下午偏村裡 */
+    const am = H < 12;
+    const list = S.tasks.slice().sort((a, b) => {
+      const A1 = SIM.taskAt(a), B1 = SIM.taskAt(b);
+      const sa = (a.fixed && a.due === S.day ? -100 : 0) + a.due + ((A1.loc === 'office') === am ? 0 : 3) + (A1.loc === S.loc ? -1 : 0);
+      const sb = (b.fixed && b.due === S.day ? -100 : 0) + b.due + ((B1.loc === 'office') === am ? 0 : 3) + (B1.loc === S.loc ? -1 : 0);
+      return sa - sb;
+    });
+    const t = list[0];
+    if (t) { const at = SIM.taskAt(t); const site = t.site && t.left === 1 ? D.TASK[t.id].site.split('.') : null; const loc = site ? site[0] : at.loc; const ob = site ? site[1] : at.obj; const obj = ob === 'house' ? U.pick(['house1', 'house2', 'house3']) : ob === 'street' ? 'lamp' : ob; return SIM.push({ kind: 'task', uid: t.uid, loc, obj }); }
+    /* 沒案子：下午到村辦公處坐班，上午整理公文 */
+    if (!am && S.loc !== 'vo') return SIM.push({ kind: 'go', loc: 'vo' });
+    if (S.loc === 'office') return SIM.push({ kind: 'npc', npc: 'chief', act: 'ask', loc: 'office', obj: 'chief' });
+    if (S.loc === 'vo') return SIM.push({ kind: 'npc', npc: 'head', act: 'chat', loc: 'vo', obj: 'head' });
+    return SIM.push({ kind: 'go', loc: 'office' });
+  }
+  /* 下班與假日 */
+  if (S.ill && !S.flags.docToday && H < 20) { S.flags.docToday = 1; return go('town', 'clinic', 'doctor'); }
+  /* 週末約會（全自動時） */
+  if (!work && !S.spouse && S.age < 46 && H > 10 && H < 19 && Math.random() < 0.25) {
+    const ks = Object.keys(D.NPCS).filter(k => D.NPCS[k].date && S.rel[k].met).sort((a, b) => S.rel[b].v - S.rel[a].v); const k = ks[0];
+    if (k) { const r = S.rel[k]; const act = r.stage === 'dating' && r.v >= 80 && S.money > 200000 ? 'propose' : !r.stage && r.v >= 60 ? 'confess' : 'meal'; return SIM.push({ kind: 'npc', npc: k, act }); }
+  }
+  if (n.hunger < 45) return S.money > 300 && Math.random() < 0.5 ? go('town', 'bento', 'bento') : go('home', 'kitchen', 'cook');
+  if (n.hygiene < 40) return go('home', 'bath', 'shower');
+  if (n.social < 35) return S.spouse ? go('home', 'tv', 'call') : Math.random() < 0.5 ? go('home', 'tv', 'call') : SIM.push({ kind: 'npc', npc: 'random', act: 'chat', loc: 'lake', obj: 'friend' });
+  if (n.fun < 40 || S.stress > 55) { const r = Math.random(); return r < 0.35 ? go('home', 'tv', 'tv') : r < 0.6 ? go('lake', 'path', S.age < 70 ? 'jog' : 'sit') : r < 0.8 ? go('field', 'bike', 'ride') : go('home', 'desk', 'web'); }
+  if (!S.retired && SIM.lv('law') < 8 && Math.random() < 0.4) return go('home', 'desk', 'study');
+  if (SIM.lv('lang') < 6 && Math.random() < 0.3) return go('home', 'desk', 'lang');
+  if (S.health < 60 && !S.flags.docToday) { S.flags.docToday = 1; return go('town', 'clinic', S.ill ? 'doctor' : 'checkup'); }
+  return S.loc === 'home' ? go('home', 'tv', 'tv') : SIM.push({ kind: 'go', loc: 'home' });
+};
+/* 全自動時事件選第一個選項 */
+SIM.autoEvent = function () { const id = S.eventQ.shift(); if (!id) return; const E = SIM.EVENTS[id]; if (E.x) E.x(); SIM.choose(id, 0); SIM.log(`［自動］${E.t}`, ''); };
+
+/* ---------- 存檔 ---------- */
+SIM.KEY = 'chishang_life_v1';
+SIM.save = function () { try { const s = JSON.stringify(Object.assign({}, S, { _tuid: TUID })); const prev = localStorage.getItem(SIM.KEY); if (prev) localStorage.setItem(SIM.KEY + '_bak', prev); localStorage.setItem(SIM.KEY, s); return true; } catch (e) { return false; } };
+SIM.load = function () {
+  for (const k of [SIM.KEY, SIM.KEY + '_bak']) {
+    try { const d = JSON.parse(localStorage.getItem(k)); if (d && d.name && d.needs) { for (const q of Object.keys(S)) delete S[q]; Object.assign(S, d); TUID = d._tuid || 1000; S.cur = null; S.queue = []; S.walkTo = null; return true; } } catch (e) { /* 下一份 */ }
+  }
+  return false;
+};
+SIM.peek = function () { try { return JSON.parse(localStorage.getItem(SIM.KEY)); } catch (e) { return null; } };
+SIM.wipe = function () { try { localStorage.removeItem(SIM.KEY); } catch (e) { /* 略過 */ } };
+})();
+
+</script>
+<script>
+/* 模組 3／5：美術 — 側視場景（租屋處、公所、村辦公處、聚落、聚會所、文健站、稻田、街區、大坡池）、人物、晝夜與天氣、地圖（全部程式繪製） */
+(function () {
+'use strict';
+const TAU = Math.PI * 2;
+const R = window.R = {};
+const OL = '#2b2622';
+const E = (c, x, y, rx, ry, f, s, lw, rot) => { c.beginPath(); c.ellipse(x, y, Math.max(0.1, rx), Math.max(0.1, ry), rot || 0, 0, TAU); if (f) { c.fillStyle = f; c.fill(); } if (s) { c.strokeStyle = s; c.lineWidth = lw || 1.5; c.stroke(); } };
+const RR = (c, x, y, w, h, r) => { r = Math.min(r, Math.abs(w) / 2, Math.abs(h) / 2); c.beginPath(); c.moveTo(x + r, y); c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r); c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath(); };
+const box = (c, x, y, w, h, f, r, s) => { RR(c, x, y, w, h, r || 3); c.fillStyle = f; c.fill(); if (s !== 0) { c.strokeStyle = s || 'rgba(43,38,34,0.55)'; c.lineWidth = 1.5; c.stroke(); } };
+const LG = (c, x0, y0, x1, y1, st) => { const g = c.createLinearGradient(x0, y0, x1, y1); st.forEach((s, i) => g.addColorStop(i / (st.length - 1), s)); return g; };
+const PL = (c, pts, f, s) => { c.beginPath(); pts.forEach((p, i) => (i ? c.lineTo(p[0], p[1]) : c.moveTo(p[0], p[1]))); c.closePath(); if (f) { c.fillStyle = f; c.fill(); } if (s) { c.strokeStyle = s; c.lineWidth = 1.5; c.stroke(); } };
+const txt = (c, s, x, y, size, col, w, al) => { c.font = `${w || 700} ${size}px "Huninn","Noto Sans TC",sans-serif`; c.textAlign = al || 'center'; c.fillStyle = col; c.fillText(s, x, y); };
+const hexA = (h, a) => { const n = parseInt(h.slice(1), 16); return `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},${a})`; };
+const shade = (h, k) => { const n = parseInt(h.slice(1), 16); const f = v => Math.round(Math.min(255, Math.max(0, k > 1 ? v + (255 - v) * (k - 1) : v * k))); return `rgb(${f(n >> 16)},${f((n >> 8) & 255)},${f(n & 255)})`; };
+Object.assign(R, { E, RR, box, LG, PL, txt, shade, hexA });
+R.ph = H => Math.max(68, Math.min(124, H * 0.15));
+
+/* ---------- 天空與光線 ---------- */
+R.sky = function (h) {
+  /* 依時刻回傳天空上下顏色與夜晚程度 */
+  const K = [[0, '#0e1a33', '#1c2b4a', 1], [5, '#1c2b4a', '#4a4a6a', 0.85], [6, '#f0a878', '#fbd9a8', 0.35], [7.5, '#8fc6ec', '#dff2fb', 0], [16.5, '#8fc6ec', '#e8f4fb', 0], [18, '#f08a5a', '#fbc98a', 0.3], [19.2, '#3a3a6a', '#7a5a7a', 0.7], [20.5, '#0e1a33', '#1c2b4a', 1], [24, '#0e1a33', '#1c2b4a', 1]];
+  let a = K[0], b = K[1]; for (let i = 0; i < K.length - 1; i++) if (h >= K[i][0] && h <= K[i + 1][0]) { a = K[i]; b = K[i + 1]; break; }
+  const f = (h - a[0]) / Math.max(0.01, b[0] - a[0]);
+  const mix = (x, y) => { const p = parseInt(x.slice(1), 16), q = parseInt(y.slice(1), 16); const m = (s) => Math.round(((p >> s) & 255) + ((((q >> s) & 255) - ((p >> s) & 255)) * f)); return `rgb(${m(16)},${m(8)},${m(0)})`; };
+  return { top: mix(a[1], b[1]), bot: mix(a[2], b[2]), night: a[3] + (b[3] - a[3]) * f };
+};
+/* 窗外或戶外的縱谷景色：海岸山脈、中央山脈、稻田 */
+R.valley = function (c, x, y, w, h, hour, season, rain) {
+  const sk = R.sky(hour);
+  c.save(); c.beginPath(); c.rect(x, y, w, h); c.clip();
+  c.fillStyle = LG(c, 0, y, 0, y + h, [sk.top, sk.bot]); c.fillRect(x, y, w, h);
+  if (sk.night > 0.6) { c.fillStyle = `rgba(255,255,240,${(sk.night - 0.6) * 2})`; for (let i = 0; i < 30; i++) { const r = Math.sin(i * 91.7) * 0.5 + 0.5, q = Math.sin(i * 13.3) * 0.5 + 0.5; c.fillRect(x + r * w, y + q * h * 0.5, 1.5, 1.5); } }
+  else if (!rain) { const sx = x + w * (0.15 + (hour - 6) / 12 * 0.7), sy = y + h * 0.15 + Math.abs(hour - 12) / 6 * h * 0.25; E(c, sx, sy, h * 0.06, h * 0.06, hour > 17 || hour < 7 ? '#ffb070' : '#fff6d0'); }
+  /* 遠山 */
+  const mtn = (base, amp, col, k) => { c.fillStyle = col; c.beginPath(); c.moveTo(x, y + h); for (let i = 0; i <= 40; i++) { const px = x + w * i / 40, py = y + h * base - amp * h * (0.5 + 0.3 * Math.sin(i * k) + 0.2 * Math.sin(i * k * 2.7 + 1)); c.lineTo(px, py); } c.lineTo(x + w, y + h); c.fill(); };
+  const dk = sk.night * 0.6;
+  mtn(0.55, 0.32, shadeN('#7d98b5', dk), 0.35);
+  mtn(0.68, 0.18, shadeN('#5f8a6a', dk), 0.6);
+  /* 稻田：依季節變色 */
+  const rice = season === '秋' ? '#e2b84a' : season === '夏' ? '#9cc25a' : season === '春' ? '#7fb06a' : '#a8a070';
+  c.fillStyle = shadeN(rice, dk); c.fillRect(x, y + h * 0.7, w, h * 0.3);
+  c.strokeStyle = `rgba(60,80,30,${0.25 - dk * 0.15})`; c.lineWidth = 1;
+  for (let i = 1; i < 6; i++) { c.beginPath(); c.moveTo(x, y + h * (0.7 + i * 0.05)); c.lineTo(x + w, y + h * (0.7 + i * 0.05)); c.stroke(); }
+  if (rain) { c.fillStyle = 'rgba(80,90,110,0.35)'; c.fillRect(x, y, w, h); c.strokeStyle = 'rgba(220,230,255,0.5)'; c.beginPath(); for (let i = 0; i < 40; i++) { const px = x + ((i * 53.7 + performance.now() * 0.4) % w), py = y + ((i * 31.1 + performance.now() * 0.9) % h); c.moveTo(px, py); c.lineTo(px - 4, py + 12); } c.stroke(); }
+  c.restore();
+  return sk;
+};
+const shadeN = (h, k) => shade(h, 1 - k);
+
+/* ---------- 人物 ---------- */
+R.SKINS = ['#f6dcc4', '#eac4a2', '#d6a47e', '#b07a54'];
+R.HCOL = ['#2a1e18', '#5a3a24', '#8a8478', '#d8d4cc'];
+/* 外觀：{ sk, hair, hc, top, g, age } pose：stand/walk/sit/sleep/talk/eat/type/jog/ride/wave */
+R.person = function (c, x, y, h, L, pose, t, face, o) {
+  o = o || {};
+  const s = h / 100, skin = R.SKINS[L.sk | 0] || R.SKINS[0];
+  const old = (L.age || 30) > 58, hc = old ? R.HCOL[(L.age || 30) > 72 ? 3 : 2] : R.HCOL[L.hc | 0] || R.HCOL[0];
+  const top = L.top || '#3d6e8c', pants = L.g === 'f' && (L.hair | 0) % 2 ? '#5a4a6a' : '#3a4250';
+  c.save(); c.translate(x, y); c.scale(face < 0 ? -s : s, s);
+  if (pose === 'sleep') { c.rotate(-Math.PI / 2); c.translate(-30, -20); }
+  const walk = pose === 'walk' || pose === 'jog', ph = walk ? Math.sin(t * (pose === 'jog' ? 14 : 9)) : 0;
+  const bob = walk ? Math.abs(Math.cos(t * 9)) * 2 : Math.sin(t * 2) * 0.6;
+  if (pose !== 'sleep' && pose !== 'ride') E(c, 0, 0, 22, 4, 'rgba(0,0,0,0.18)');
+  c.translate(0, -bob);
+  if (old) c.rotate(0.05);
+  const sit = pose === 'sit' || pose === 'type' || pose === 'eat' || pose === 'ride';
+  /* 腿 */
+  const leg = (dx, a, back) => { c.save(); c.translate(dx, -46); c.rotate(a); box(c, -5, 0, 10, sit ? 22 : 40, back ? shade(pants, 0.8) : pants, 4); box(c, -6, sit ? 18 : 36, 15, 8, '#3a2e28', 3); c.restore(); };
+  if (sit) {
+    if (!o.noChair && pose !== 'ride') { box(c, -24, -36, 40, 7, '#8a6a46', 3); box(c, -22, -30, 6, 30, '#6a4e34', 2); box(c, 8, -30, 6, 30, '#6a4e34', 2); box(c, -26, -84, 7, 52, '#8a6a46', 3); }
+    box(c, -10, -44, 34, 12, shade(pants, 0.8), 5); box(c, 14, -40, 10, 36, shade(pants, 0.8), 4); box(c, 14, -7, 16, 7, '#3a2e28', 3);
+    box(c, -8, -42, 36, 12, pants, 5); box(c, 19, -36, 10, 32, pants, 4); box(c, 19, -6, 16, 7, '#3a2e28', 3);
+  }
+  else { leg(-4, ph * 0.45, true); leg(5, -ph * 0.45, false); }
+  /* 身體 */
+  const by = sit ? -78 : -84;
+  box(c, -14, by, 28, 40, top, 9);
+  c.fillStyle = 'rgba(0,0,0,0.12)'; c.fillRect(-14, by + 30, 28, 4);
+  if (o.vest) { box(c, -14, by + 2, 28, 30, '#2f5d7c', 7); c.fillStyle = '#e9c46a'; c.fillRect(-12, by + 10, 9, 3); }
+  if (L.deco === 'amis') { c.fillStyle = '#c8402a'; c.fillRect(-14, by + 22, 28, 5); c.fillStyle = '#e9c46a'; for (let i = 0; i < 4; i++) c.fillRect(-12 + i * 7, by + 23, 3, 3); }
+  /* 手臂 */
+  const arm = (dx, a, front) => { c.save(); c.translate(dx, by + 6); c.rotate(a); box(c, -4.5, 0, 9, 30, front ? shade(top, 0.92) : shade(top, 0.8), 4); E(c, 0, 32, 5, 5, skin); c.restore(); };
+  let aF = walk ? -ph * 0.5 : 0.1, aB = walk ? ph * 0.5 : -0.05;
+  if (pose === 'type') { aF = -1.2 + Math.sin(t * 20) * 0.08; aB = -1.1; }
+  if (pose === 'eat') { aF = -2.2 + Math.sin(t * 4) * 0.3; }
+  if (pose === 'talk') { aF = -0.8 + Math.sin(t * 3) * 0.4; }
+  if (pose === 'wave') { aF = -2.8 + Math.sin(t * 8) * 0.3; }
+  if (pose === 'ride') { aF = -1.2; aB = -1.2; }
+  if (pose === 'phone') { aF = -2.5; }
+  arm(-10, aB, false);
+  /* 頭 */
+  const hy = by - 20;
+  E(c, 0, hy + 16, 6, 6, skin);
+  E(c, 0, hy, 17, 18, skin, 'rgba(43,38,34,0.4)', 1.2);
+  /* 頭髮 */
+  c.fillStyle = hc;
+  const hs = L.hair | 0;
+  c.beginPath(); c.ellipse(-1, hy - 6, 18, 14, 0, Math.PI, TAU); c.fill();
+  if (hs === 2 || hs === 6 || hs === 7) { box(c, -18, hy - 8, 10, hs === 6 ? 40 : 30, hc, 6, 0); }
+  if (hs === 5) { E(c, -16, hy + 2, 8, 12, hc); }
+  if (hs === 7) { E(c, -20, hy - 10, 7, 7, hc); }
+  if (hs === 3 && !old) { c.fillRect(-17, hy - 8, 6, 12); }
+  if (hs === 4 || old) { c.fillStyle = hc; c.fillRect(-17, hy - 8, 5, 10); }
+  if (hs === 1) { c.fillStyle = hc; c.beginPath(); c.moveTo(-18, hy - 4); c.quadraticCurveTo(0, hy - 26, 18, hy - 6); c.lineTo(8, hy - 10); c.fill(); }
+  /* 臉 */
+  if (pose === 'sleep') { c.strokeStyle = OL; c.lineWidth = 1.5; c.beginPath(); c.moveTo(4, hy); c.lineTo(9, hy); c.stroke(); }
+  else { E(c, 7, hy, 2, 2.6, OL); E(c, 7.6, hy - 0.8, 0.7, 0.7, '#fff'); }
+  E(c, 10, hy + 7, 3, 1.8, 'rgba(230,120,110,0.35)');
+  if (o.mood === 'sad') { c.strokeStyle = OL; c.lineWidth = 1.3; c.beginPath(); c.arc(7, hy + 11, 3, Math.PI * 1.15, Math.PI * 1.85); c.stroke(); }
+  else { c.strokeStyle = OL; c.lineWidth = 1.3; c.beginPath(); c.arc(7, hy + 6, 3.2, 0.3, Math.PI - 0.6); c.stroke(); }
+  if (old) { c.strokeStyle = 'rgba(43,38,34,0.35)'; c.beginPath(); c.moveTo(2, hy - 6); c.lineTo(8, hy - 7); c.stroke(); }
+  if (L.glasses || (L.age || 30) > 50) { c.strokeStyle = '#333'; c.lineWidth = 1.2; E(c, 7, hy, 4.5, 4, null, '#333', 1.2); }
+  arm(10, aF, true);
+  if (pose === 'phone') { box(c, 14, hy - 4, 6, 11, '#222', 2); }
+  if (pose === 'eat') { E(c, 22, by + 20, 10, 4, '#fff', OL, 1); }
+  c.restore();
+  /* 狀態圖示 */
+  if (o.icon) { c.save(); c.translate(x, y - h * 1.18); box(c, -14, -16, 28, 24, 'rgba(255,255,255,0.95)', 10); PL(c, [[-4, 8], [4, 8], [0, 14]], 'rgba(255,255,255,0.95)'); c.font = '16px sans-serif'; c.textAlign = 'center'; c.fillText(o.icon, 0, 3); c.restore(); }
+};
+
+/* ---------- 場景 ---------- */
+R.drawScene = function (c, W, H, loc, t, env) {
+  const fy = H - Math.max(130, H * 0.2);   /* 地板高度（底部面板上方） */
+  env.fy = fy;
+  const f = R.SCENES[loc]; if (f) f(c, W, H, fy, t, env);
+};
+const wall = (c, W, fy, col, top) => { c.fillStyle = LG(c, 0, top, 0, fy, [shade(col, 1.04), col]); c.fillRect(0, top, W, fy - top); };
+const floor = (c, W, H, fy, col, line) => { c.fillStyle = LG(c, 0, fy, 0, H, [col, shade(col, 0.85)]); c.fillRect(0, fy, W, H - fy); if (line) { c.strokeStyle = 'rgba(0,0,0,0.08)'; for (let x = 0; x < W; x += 70) { c.beginPath(); c.moveTo(x, fy); c.lineTo(x - 40, H); c.stroke(); } } };
+const windowV = (c, x, y, w, h, env) => { box(c, x - 6, y - 6, w + 12, h + 12, '#f4efe6', 4); R.valley(c, x, y, w, h, env.hour, env.season, env.rain); c.strokeStyle = '#f4efe6'; c.lineWidth = 5; c.beginPath(); c.moveTo(x + w / 2, y); c.lineTo(x + w / 2, y + h); c.stroke(); };
+const darkness = (c, W, H, env, indoor) => { const a = indoor ? Math.max(0, env.night - 0.5) * 0.25 : env.night * 0.55; if (a > 0.01) { c.fillStyle = `rgba(10,18,40,${a})`; c.fillRect(0, 0, W, H); } };
+R.SCENES = {
+  home(c, W, H, fy, t, env) {
+    wall(c, W, fy, '#efe4d2', 0); floor(c, W, H, fy, '#c9a77a', 1);
+    c.fillStyle = '#d9c8ad'; c.fillRect(0, fy - 14, W, 14);
+    windowV(c, W * 0.44, fy - 270, Math.min(240, W * 0.18), 150, env);
+    const X = k => W * k;
+    /* 床 */
+    box(c, X(0.06), fy - 70, W * 0.2, 60, '#7a5a40', 6); box(c, X(0.07), fy - 88, W * 0.18, 30, env.up.bed ? '#f4f4f8' : '#e8e0d0', 10); box(c, X(0.07), fy - 96, 60, 22, '#ffffff', 10); box(c, X(0.12), fy - 84, W * 0.12, 26, '#8fb3c9', 10);
+    /* 書桌 */
+    box(c, X(0.3), fy - 92, W * 0.12, 10, '#a07a52', 3); box(c, X(0.31), fy - 82, 8, 82, '#8a6a46', 2); box(c, X(0.4), fy - 82, 8, 82, '#8a6a46', 2);
+    box(c, X(0.34), fy - 140, 70, 46, '#2b2622', 4); box(c, X(0.34) + 4, fy - 136, 62, 36, env.hour > 18 || env.hour < 7 ? '#9ad0f0' : '#6a8aa0', 2);
+    for (let i = 0; i < (env.up.books ? 6 : 3); i++) box(c, X(0.3) + i * 12, fy - 116, 10, 24, ['#c8402a', '#3d6e8c', '#e9c46a', '#2a9d8f', '#6d597a', '#e76f51'][i], 2);
+    /* 廚房 */
+    box(c, X(0.52), fy - 96, W * 0.1, 96, '#e8e8e4', 6); box(c, X(0.53), fy - 160, W * 0.06, 60, '#dcdcd8', 6); E(c, X(0.57), fy - 104, 16, 10, '#f2f2f2', OL, 1); box(c, X(0.565), fy - 118, 22, 14, '#e86a4a', 5);
+    /* 電視與沙發 */
+    box(c, X(0.68), fy - 150, W * 0.12, 70, '#1e1e22', 6); c.fillStyle = env.tvOn ? `hsl(${(t * 40) % 360},50%,60%)` : '#2b2f38'; c.fillRect(X(0.68) + 5, fy - 145, W * 0.12 - 10, 60);
+    box(c, X(0.66), fy - 60, W * 0.16, 50, '#c47a5a', 12);
+    if (env.up.aircon) box(c, X(0.7), fy - 260, 120, 34, '#fafafa', 8);
+    /* 浴室門 */
+    box(c, X(0.87), fy - 200, W * 0.08, 200, '#d6c3a5', 4); E(c, X(0.88), fy - 100, 4, 4, '#8a7a5a');
+    /* 牆面裝飾：月曆、時鐘、層架、盆栽、吊燈 */
+    box(c, X(0.08), fy - 330, 70, 90, '#ffffff', 3); c.fillStyle = '#c8402a'; c.fillRect(X(0.08), fy - 330, 70, 16); for (let i = 0; i < 12; i++) { c.fillStyle = '#ddd'; c.fillRect(X(0.08) + 6 + (i % 4) * 15, fy - 306 + Math.floor(i / 4) * 18, 10, 10); }
+    E(c, X(0.3), fy - 300, 26, 26, '#fffdf7', OL, 2); { const hh = env.hour; c.strokeStyle = OL; c.lineWidth = 2.5; c.beginPath(); c.moveTo(X(0.3), fy - 300); c.lineTo(X(0.3) + Math.sin(hh / 12 * TAU) * 14, fy - 300 - Math.cos(hh / 12 * TAU) * 14); c.stroke(); c.lineWidth = 1.5; c.beginPath(); c.moveTo(X(0.3), fy - 300); c.lineTo(X(0.3) + Math.sin(hh * TAU) * 20, fy - 300 - Math.cos(hh * TAU) * 20); c.stroke(); }
+    box(c, X(0.66), fy - 230, W * 0.16, 8, '#a07a52', 2); for (let i = 0; i < 5; i++) box(c, X(0.67) + i * 16, fy - 256, 12, 26, ['#e9c46a', '#3d6e8c', '#7fa650', '#c8402a', '#6d597a'][i], 2); E(c, X(0.66) + W * 0.13, fy - 244, 14, 14, '#7fa650');
+    box(c, X(0.83) - 20, fy - 40, 34, 40, '#c86a4a', 6); E(c, X(0.83) - 3, fy - 62, 26, 30, '#5a9a4a'); E(c, X(0.83) + 8, fy - 82, 16, 20, '#6aaa5a');
+    c.strokeStyle = '#8a7a6a'; c.lineWidth = 2; c.beginPath(); c.moveTo(W * 0.5, 0); c.lineTo(W * 0.5, 40); c.stroke(); PL(c, [[W * 0.5 - 30, 64], [W * 0.5 + 30, 64], [W * 0.5 + 14, 40], [W * 0.5 - 14, 40]], '#e9c46a', 'rgba(0,0,0,.2)');
+    box(c, X(0.24), fy - 8, W * 0.4, 8, 'rgba(200,64,42,.35)', 4, 0);
+    if (env.spouse) { /* 結婚照 */ box(c, X(0.2), fy - 230, 60, 46, '#ffffff', 3); E(c, X(0.2) + 22, fy - 210, 8, 8, '#d6a47e'); E(c, X(0.2) + 38, fy - 210, 8, 8, '#eac4a2'); }
+    darkness(c, W, H, env, 1);
+    if (env.night > 0.5) { const g = c.createRadialGradient(W * 0.5, fy - 300, 10, W * 0.5, fy - 300, W * 0.6); g.addColorStop(0, 'rgba(255,220,160,0.18)'); g.addColorStop(1, 'rgba(255,220,160,0)'); c.fillStyle = g; c.fillRect(0, 0, W, H); }
+  },
+  office(c, W, H, fy, t, env) {
+    wall(c, W, fy, '#eef1ec', 0); floor(c, W, H, fy, '#b8bdb4', 0);
+    for (let x = 0; x < W; x += 60) { c.fillStyle = 'rgba(0,0,0,0.04)'; c.fillRect(x, fy, 30, H - fy); }
+    c.fillStyle = '#3d6e8c'; c.fillRect(0, fy - 330, W, 36); txt(c, '臺東縣池上鄉公所　原住民族事務所', W / 2, fy - 306, 18, '#fff');
+    /* 族群紋樣帶 */
+    for (let x = 0; x < W; x += 28) { PL(c, [[x, fy - 294], [x + 14, fy - 282], [x + 28, fy - 294]], '#c8402a'); PL(c, [[x, fy - 282], [x + 14, fy - 294], [x + 28, fy - 282]], '#e9c46a'); }
+    windowV(c, W * 0.38, fy - 260, Math.min(200, W * 0.14), 110, env);
+    const X = k => W * k;
+    /* 打卡機 */
+    box(c, X(0.06), fy - 160, 44, 60, '#5a6470', 6); box(c, X(0.06) + 6, fy - 152, 32, 18, '#9fe0b0', 3); txt(c, U.hm(env.min), X(0.06) + 22, fy - 139, 11, '#1a3a1a');
+    /* 櫃檯 */
+    box(c, X(0.18), fy - 96, W * 0.2, 96, '#c8a878', 6); box(c, X(0.18), fy - 104, W * 0.2, 12, '#e8d8b8', 4); txt(c, '服務櫃檯', X(0.28), fy - 50, 15, '#5a4020');
+    box(c, X(0.3), fy - 150, 58, 44, '#2b2622', 4);
+    /* 辦公桌 */
+    for (const k of [0.46, 0.66]) { box(c, X(k), fy - 92, W * 0.12, 12, '#d8c8a8', 3); box(c, X(k) + 6, fy - 80, 8, 80, '#8a8a84', 2); box(c, X(k) + W * 0.12 - 14, fy - 80, 8, 80, '#8a8a84', 2); box(c, X(k) + 20, fy - 140, 64, 44, '#2b2622', 4); box(c, X(k) + 24, fy - 136, 56, 34, '#cfe6f0', 2); for (let i = 0; i < 3; i++) box(c, X(k) + W * 0.12 - 40 + i * 4, fy - 110 - i * 6, 30, 6, '#f4f0e6', 1); }
+    txt(c, '所長', X(0.72), fy - 60, 13, '#6a6a60');
+    /* 會議室門 */
+    box(c, X(0.85), fy - 210, W * 0.11, 210, '#a8b8c0', 4); box(c, X(0.86), fy - 190, W * 0.09, 70, '#d8eef4', 3); txt(c, '會議室', X(0.905), fy - 220, 14, '#3d6e8c');
+    box(c, X(0.1), fy - 260, 90, 60, '#ffffff', 3); txt(c, '服務項目', X(0.1) + 45, fy - 240, 12, '#3d6e8c'); for (let i = 0; i < 3; i++) { c.fillStyle = '#ccc'; c.fillRect(X(0.1) + 10, fy - 230 + i * 9, 70, 3); }
+    darkness(c, W, H, env, 1);
+  },
+  vo(c, W, H, fy, t, env) {
+    wall(c, W, fy, '#f0e6d0', 0); floor(c, W, H, fy, '#a8a090', 0);
+    c.fillStyle = '#7a9a5a'; c.fillRect(0, fy - 320, W, 30); txt(c, '大埔村辦公處', W / 2, fy - 298, 18, '#fff');
+    const X = k => W * k;
+    box(c, X(0.08), fy - 250, W * 0.2, 150, '#c8a070', 4); box(c, X(0.09), fy - 240, W * 0.18, 130, '#f2e6c8', 3);
+    for (let i = 0; i < 4; i++) box(c, X(0.1) + (i % 2) * W * 0.085, fy - 232 + Math.floor(i / 2) * 62, W * 0.07, 52, ['#fff', '#fde2c4', '#e2f0d8', '#fff4b0'][i], 2);
+    txt(c, '公布欄', X(0.18), fy - 85, 14, '#6a4a2a');
+    box(c, X(0.36), fy - 92, W * 0.18, 12, '#b08a5a', 3); box(c, X(0.37), fy - 80, 8, 80, '#8a6a46', 2); box(c, X(0.52), fy - 80, 8, 80, '#8a6a46', 2);
+    for (let i = 0; i < 6; i++) box(c, X(0.6) + i * 32, fy - 46, 26, 46, '#5a7a9a', 4);
+    windowV(c, W * 0.62, fy - 260, Math.min(220, W * 0.18), 120, env);
+    box(c, X(0.88), fy - 120, 40, 120, '#2a9d8f', 4); txt(c, '飲水機', X(0.88) + 20, fy - 128, 11, '#2a6a60');
+    darkness(c, W, H, env, 1);
+  },
+  village(c, W, H, fy, t, env) {
+    R.valley(c, 0, 0, W, fy, env.hour, env.season, env.rain);
+    floor(c, W, H, fy, '#8a8a80', 0); c.fillStyle = '#6a6a62'; c.fillRect(0, fy, W, 8);
+    const X = k => W * k;
+    const house = (cx, col, roof, tin) => { const w = Math.min(260, W * 0.22); box(c, cx - w / 2, fy - 170, w, 170, col, 2); if (tin) { c.fillStyle = roof; c.fillRect(cx - w / 2 - 12, fy - 186, w + 24, 18); for (let i = 0; i < 12; i++) c.fillRect(cx - w / 2 - 12 + i * (w + 24) / 12, fy - 186, 2, 18); } else PL(c, [[cx - w / 2 - 16, fy - 168], [cx, fy - 230], [cx + w / 2 + 16, fy - 168]], roof, 'rgba(0,0,0,0.3)'); box(c, cx - 22, fy - 90, 44, 90, '#7a5a40', 3); box(c, cx + w / 2 - 70, fy - 140, 50, 40, env.night > 0.5 ? '#ffe6a0' : '#bcd8e8', 2); for (let i = 0; i < 3; i++) { E(c, cx - w / 2 + 20 + i * 18, fy - 8, 10, 8, '#c86a4a'); E(c, cx - w / 2 + 20 + i * 18, fy - 22, 12, 12, '#6aa84a'); } };
+    house(X(0.15), '#f2e6d6', '#5a7a9a', 1); house(X(0.42), '#e8dcc8', '#a85a3a', 0); house(X(0.85), '#f0ece4', '#4a6a5a', 1);
+    /* 路燈與水溝 */
+    c.fillStyle = '#5a6060'; c.fillRect(X(0.64), fy - 260, 7, 260); box(c, X(0.64) - 6, fy - 272, 40, 14, '#5a6060', 5); E(c, X(0.64) + 24, fy - 258, 10, 5, env.night > 0.5 ? (env.lampBroken ? '#555' : '#fff2a0') : '#ddd');
+    c.fillStyle = '#4a5a60'; c.fillRect(X(0.58), fy + 2, W * 0.14, 8);
+    /* 機車 */
+    E(c, X(0.3), fy - 12, 12, 12, '#2a2a2a'); E(c, X(0.3) + 48, fy - 12, 12, 12, '#2a2a2a'); box(c, X(0.3) - 4, fy - 46, 58, 26, '#c8402a', 10);
+    darkness(c, W, H, env, 0);
+  },
+  tribe(c, W, H, fy, t, env) {
+    R.valley(c, 0, 0, W, fy, env.hour, env.season, env.rain);
+    floor(c, W, H, fy, '#9a8a6a', 0);
+    const X = k => W * k;
+    /* 聚會所：竹木與茅草屋頂 */
+    const cx = X(0.62), w = Math.min(420, W * 0.38);
+    for (let i = 0; i < 6; i++) box(c, cx - w / 2 + i * (w / 5) - 6, fy - 180, 12, 180, '#7a5a3a', 3);
+    PL(c, [[cx - w / 2 - 40, fy - 170], [cx, fy - 280], [cx + w / 2 + 40, fy - 170]], '#c8a860', 'rgba(0,0,0,0.25)');
+    c.strokeStyle = 'rgba(120,90,40,0.5)'; for (let i = 0; i < 16; i++) { c.beginPath(); c.moveTo(cx - w / 2 - 40 + i * (w + 80) / 16, fy - 170); c.lineTo(cx, fy - 278); c.stroke(); }
+    /* 紋樣布條 */
+    for (let x = cx - w / 2; x < cx + w / 2; x += 24) { c.fillStyle = '#c8402a'; c.fillRect(x, fy - 168, 12, 14); c.fillStyle = '#e9c46a'; c.fillRect(x + 12, fy - 168, 12, 14); }
+    box(c, cx - w * 0.35, fy - 40, w * 0.7, 16, '#8a6a40', 4);
+    if (env.month === 7 || env.month === 8) { for (let i = 0; i < 9; i++) { const px = X(0.08) + i * W * 0.04; R.person(c, px, fy, R.ph(H) * 0.8, { sk: 3, hair: i % 3, hc: 0, top: i % 2 ? '#c8402a' : '#e9c46a', g: i % 2 ? 'f' : 'm', age: 30 + i * 5, deco: 'amis' }, 'walk', t + i, 1, {}); } }
+    darkness(c, W, H, env, 0);
+  },
+  care(c, W, H, fy, t, env) {
+    wall(c, W, fy, '#fbf1e0', 0); floor(c, W, H, fy, '#d8c8a8', 1);
+    c.fillStyle = '#2a9d8f'; c.fillRect(0, fy - 320, W, 30); txt(c, '部落文化健康站', W / 2, fy - 298, 18, '#fff');
+    const X = k => W * k;
+    windowV(c, W * 0.7, fy - 250, Math.min(200, W * 0.16), 110, env);
+    box(c, X(0.13), fy - 34, W * 0.38, 10, '#c8a070', 4); box(c, X(0.14), fy - 26, 8, 26, '#8a6a46', 2); box(c, X(0.49), fy - 26, 8, 26, '#8a6a46', 2);
+    for (let i = 0; i < 4; i++) R.person(c, X(0.17) + i * W * 0.09, fy, R.ph(H) * 0.92, { sk: 3, hair: 4, hc: 3, top: ['#e9c46a', '#c8402a', '#8ab17d', '#e76f51'][i], g: i % 2 ? 'f' : 'm', age: 75 + i * 3 }, 'sit', t + i * 1.7, i < 2 ? 1 : -1, { noChair: 1 });
+    for (let i = 0; i < 6; i++) box(c, X(0.08) + i * 70, fy - 250, 50, 40, ['#f4a261', '#2a9d8f', '#e9c46a', '#e76f51', '#8ab17d', '#6d597a'][i], 4);
+    darkness(c, W, H, env, 1);
+  },
+  field(c, W, H, fy, t, env) {
+    R.valley(c, 0, 0, W, fy, env.hour, env.season, env.rain);
+    const rice = env.season === '秋' ? '#e2b84a' : env.season === '夏' ? '#8ab84a' : '#7fb06a';
+    c.fillStyle = shade(rice, 1 - env.night * 0.5); c.fillRect(0, fy - 60, W, 60);
+    for (let x = 0; x < W; x += 9) { const sw = Math.sin(t * 1.5 + x * 0.02) * 3; c.strokeStyle = shade(rice, 0.75 - env.night * 0.3); c.lineWidth = 2; c.beginPath(); c.moveTo(x, fy - 2); c.quadraticCurveTo(x + sw, fy - 30, x + sw * 2, fy - 50 - (x % 3) * 4); c.stroke(); if (env.season === '秋') E(c, x + sw * 2, fy - 52 - (x % 3) * 4, 2, 5, shade('#d8a030', 1 - env.night * 0.5)); }
+    floor(c, W, H, fy, '#b8a888', 0); c.fillStyle = '#9a8a6a'; c.fillRect(0, fy, W, 5);
+    if (env.cropLoss) { c.fillStyle = 'rgba(120,100,60,0.35)'; c.fillRect(W * 0.1, fy - 30, W * 0.4, 30); }
+    box(c, W * 0.66, fy - 120, 120, 70, '#f2e6c8', 4); txt(c, '單車出租', W * 0.66 + 60, fy - 90, 15, '#6a4a2a');
+    for (let i = 0; i < 3; i++) { const bx = W * 0.66 + i * 40; E(c, bx + 8, fy - 12, 10, 10, null, '#333', 2); E(c, bx + 32, fy - 12, 10, 10, null, '#333', 2); c.strokeStyle = '#3d6e8c'; c.beginPath(); c.moveTo(bx + 8, fy - 12); c.lineTo(bx + 20, fy - 28); c.lineTo(bx + 32, fy - 12); c.stroke(); }
+    darkness(c, W, H, env, 0);
+  },
+  town(c, W, H, fy, t, env) {
+    R.valley(c, 0, 0, W, fy, env.hour, env.season, env.rain);
+    floor(c, W, H, fy, '#7a7a78', 0);
+    const X = k => W * k;
+    const shop = (cx, w, col, sign, sc) => { box(c, cx - w / 2, fy - 230, w, 230, col, 2); box(c, cx - w / 2, fy - 230, w, 40, sc, 2); txt(c, sign, cx, fy - 203, 18, '#fff'); box(c, cx - w * 0.35, fy - 150, w * 0.7, 150, env.night > 0.5 ? '#ffe9b0' : '#c8dce6', 3); };
+    shop(X(0.2), Math.min(260, W * 0.22), '#f2e6d0', '池上便當', '#c8402a');
+    shop(X(0.5), Math.min(240, W * 0.2), '#f4f4f0', '便利商店', '#2a9d8f');
+    shop(X(0.8), Math.min(260, W * 0.22), '#eef2f4', '池上鄉衛生所', '#3d6e8c');
+    darkness(c, W, H, env, 0);
+    if (env.night > 0.4) for (const k of [0.2, 0.5, 0.8]) { const g = c.createRadialGradient(X(k), fy - 80, 5, X(k), fy - 80, 160); g.addColorStop(0, 'rgba(255,230,160,0.35)'); g.addColorStop(1, 'rgba(255,230,160,0)'); c.fillStyle = g; c.fillRect(X(k) - 160, fy - 240, 320, 260); }
+  },
+  lake(c, W, H, fy, t, env) {
+    R.valley(c, 0, 0, W, fy, env.hour, env.season, env.rain);
+    c.fillStyle = LG(c, 0, fy - 90, 0, fy, [shade('#6aa0c0', 1 - env.night * 0.6), shade('#4a8aa8', 1 - env.night * 0.6)]); c.fillRect(0, fy - 90, W, 90);
+    for (let i = 0; i < 20; i++) { const x = (i * 97 + t * 10) % W; c.strokeStyle = 'rgba(255,255,255,0.35)'; c.beginPath(); c.moveTo(x, fy - 60 + (i % 5) * 12); c.lineTo(x + 30, fy - 60 + (i % 5) * 12); c.stroke(); }
+    for (let i = 0; i < 8; i++) { E(c, W * 0.05 + i * W * 0.12, fy - 30 - (i % 3) * 12, 22, 6, '#4a8a42'); if (env.season === '夏') E(c, W * 0.05 + i * W * 0.12 + 8, fy - 40 - (i % 3) * 12, 7, 7, '#f6b8cc'); }
+    floor(c, W, H, fy, '#b8a888', 0);
+    darkness(c, W, H, env, 0);
+  },
+};
+
+/* ---------- 地圖 ---------- */
+R.map = function (c, W, H, cur, hover, D) {
+  c.fillStyle = '#e9e2c8'; c.fillRect(0, 0, W, H);
+  /* 稻田方格 */
+  for (let x = 0; x < W; x += 34) for (let y = 0; y < H; y += 26) { const k = Math.sin(x * 0.13 + y * 0.29); c.fillStyle = k > 0.3 ? '#cfd8a0' : k > -0.3 ? '#c2cf92' : '#d8dcae'; c.fillRect(x + 1, y + 1, 32, 24); }
+  /* 山 */
+  c.fillStyle = '#8aa88a'; c.beginPath(); c.moveTo(0, 0); for (let i = 0; i <= 10; i++) c.lineTo(W * i / 10, H * 0.12 + Math.sin(i * 1.3) * 14); c.lineTo(W, 0); c.fill();
+  c.fillStyle = '#7a9a80'; c.beginPath(); c.moveTo(0, H); for (let i = 0; i <= 10; i++) c.lineTo(W * i / 10, H * 0.9 + Math.sin(i * 1.7) * 12); c.lineTo(W, H); c.fill();
+  /* 新武呂溪與台9線 */
+  c.strokeStyle = '#7ab0d0'; c.lineWidth = 10; c.beginPath(); c.moveTo(0, H * 0.82); c.bezierCurveTo(W * 0.3, H * 0.75, W * 0.5, H * 0.95, W, H * 0.86); c.stroke();
+  c.strokeStyle = '#f2f2ee'; c.lineWidth = 8; c.beginPath(); c.moveTo(W * 0.2, 0); c.bezierCurveTo(W * 0.3, H * 0.4, W * 0.35, H * 0.6, W * 0.4, H); c.stroke(); txt(c, '台9線', W * 0.25, H * 0.2, 12, '#6a6a60');
+  E(c, W * 0.62, H * 0.46, W * 0.07, H * 0.06, '#7ab0d0');
+  for (const k in D.LOCS) {
+    const L = D.LOCS[k], x = L.map[0] * W, y = L.map[1] * H, on = k === cur, hv = k === hover;
+    E(c, x, y + 4, 14, 5, 'rgba(0,0,0,0.2)');
+    c.beginPath(); c.arc(x, y - 18, on ? 15 : 12, 0, TAU); c.fillStyle = on ? '#c8402a' : hv ? '#e9a03a' : '#3d6e8c'; c.fill(); PL(c, [[x - 8, y - 12], [x + 8, y - 12], [x, y + 2]], c.fillStyle);
+    c.fillStyle = '#fff'; c.beginPath(); c.arc(x, y - 18, 5, 0, TAU); c.fill();
+    c.font = '700 13px "Huninn","Noto Sans TC",sans-serif'; const tw = c.measureText(L.n).width + 12;
+    box(c, x - tw / 2, y + 6, tw, 20, on ? '#c8402a' : 'rgba(255,255,255,0.92)', 8, 0); txt(c, L.n, x, y + 21, 13, on ? '#fff' : '#2b2622');
+  }
+};
+})();
+
+</script>
+<script>
+/* 模組 4／4：介面 — 標題與捏人、主迴圈、場景點選動作、待辦佇列、各面板、事件視窗、地圖、自動生活、存檔、結局 */
+(function () {
+'use strict';
+const $ = id => document.getElementById(id);
+const cv = $('cv'), cx = cv.getContext('2d');
+let W = 0, H = 0, DPR = 1;
+const UI = window.UI = { speed: 1, tab: null, menu: null, t: 0, ev: null, paused: false, feed: [] };
+const SPEEDS = [0, 2, 8, 30];          /* 每秒遊戲分鐘 */
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+function resize() {
+  DPR = Math.min(2, window.devicePixelRatio || 1); W = innerWidth; H = innerHeight;
+  cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR); cx.setTransform(DPR, 0, 0, DPR, 0, 0);
+}
+addEventListener('resize', () => { resize(); layoutHUD(); }); resize();
+function layoutHUD() { const t = $('top'); if (t.hidden) return; const b = t.getBoundingClientRect().bottom; $('loc').style.top = b + 4 + 'px'; $('rightBtns').style.top = b + 4 + 'px'; const lb = $('loc').getBoundingClientRect().bottom; $('feed').style.top = lb + 6 + 'px'; }
+
+/* ---------- 小工具 ---------- */
+let toastT = 0;
+function toast(m) { const t = $('toast'); t.textContent = m; t.style.opacity = 1; clearTimeout(toastT); toastT = setTimeout(() => (t.style.opacity = 0), 1800); }
+function feed(m, kind) {
+  const el = document.createElement('div'); el.className = 'fd ' + (kind || ''); el.textContent = m; $('feed').prepend(el);
+  const all = $('feed').children; while (all.length > 4) all[all.length - 1].remove();
+  setTimeout(() => { el.style.opacity = 0; setTimeout(() => el.remove(), 700); }, kind === 'big' ? 7000 : 4500);
+}
+const AC = window.AudioContext || window.webkitAudioContext; let ac = null;
+function beep(f, d, type, v) { try { ac = ac || new AC(); const o = ac.createOscillator(), g = ac.createGain(); o.type = type || 'sine'; o.frequency.value = f; g.gain.setValueAtTime(v || 0.06, ac.currentTime); g.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + d); o.connect(g); g.connect(ac.destination); o.start(); o.stop(ac.currentTime + d); } catch (e) { /* 無音效 */ } }
+const SFX = { clock: () => { beep(880, 0.1, 'square', 0.03); setTimeout(() => beep(1320, 0.12, 'square', 0.03), 90); }, done: () => { beep(660, 0.12); setTimeout(() => beep(990, 0.18), 110); }, fail: () => beep(220, 0.25, 'triangle'), big: () => [523, 659, 784, 1046].forEach((f, i) => setTimeout(() => beep(f, 0.25), i * 120)), pop: () => beep(740, 0.06, 'sine', 0.04) };
+
+/* ---------- 標題與捏人 ---------- */
+const NEWL = { name: '', g: 'f', sk: 1, hair: 2, hc: 0, top: '#3d6e8c', age: 25, lang: false };
+const TOPS = ['#3d6e8c', '#c8402a', '#7fa650', '#e9c46a', '#6d597a', '#2a9d8f', '#f4f1ea', '#e76f51'];
+const NAMES = { f: ['林雅婷', '陳怡君', 'Panay 潘', '黃筱涵', '張詠晴'], m: ['王志豪', '李承翰', 'Kacaw 高', '吳俊宏', '劉冠廷'] };
+function titleScreen() {
+  const has = SIM.peek();
+  $('title').hidden = false;
+  $('titleBox').innerHTML = `<div style="font-size:42px">🌾</div><h1>池上村幹事人生</h1>
+  <div class="sub">臺東縣池上鄉公所・原住民族事務所<br>從報到第一天開始，一路到人生的最後一天。</div>
+  <div class="opts">${has && !has.dead ? `<button class="btn" id="tCont">繼續人生<br><small style="font-weight:400">${esc(has.name)}・${Math.floor(has.age)} 歲・${D.RANKS[has.rank].n}</small></button>` : ''}
+  <button class="btn ${has && !has.dead ? 'alt' : ''}" id="tNew">開始新的人生</button></div>
+  <div class="desc" style="margin-top:14px;text-align:left">玩法：點畫面上的物品或人安排動作（最多排 5 件）。上班日 8:00 前到公所打卡，上午在公所處理原民所業務，下午到大埔村服務。照顧好飽足、精力、清潔、社交、娛樂，壓力太大會傷身。可以開「🤖 自動」讓角色自己生活。</div>
+  <div class="desc" style="text-align:left">人物與事件皆為虛構，業務內容參考村里幹事服務要點與池上鄉公所原民所服務項目。</div>`;
+  if ($('tCont')) $('tCont').onclick = () => { if (SIM.load()) startGame(); else toast('存檔讀取失敗'); };
+  $('tNew').onclick = () => { if (has && !has.dead && !confirmNew()) return; createScreen(); };
+}
+let confirmArm = 0;
+function confirmNew() { if (Date.now() - confirmArm < 3000) return true; confirmArm = Date.now(); toast('會覆蓋目前的存檔，再按一次確認'); return false; }
+function createScreen() {
+  if (!NEWL.name) NEWL.name = U.pick(NAMES[NEWL.g]);
+  const seg = (k, vals, labels) => `<div class="seg" data-k="${k}">${vals.map((v, i) => `<button data-v="${v}" class="${NEWL[k] == v ? 'on' : ''}">${labels ? labels[i] : v}</button>`).join('')}</div>`;
+  const sw = (k, cols) => `<div class="seg" data-k="${k}">${cols.map((c, i) => `<button class="sw ${NEWL[k] == (k === 'top' ? c : i) ? 'on' : ''}" data-v="${k === 'top' ? c : i}" style="background:${c}"></button>`).join('')}</div>`;
+  $('titleBox').innerHTML = `<h2 style="justify-content:center">建立角色</h2><canvas id="pv" width="240" height="300"></canvas>
+  <div class="form">
+   <label>姓名 <input type="text" id="fName" maxlength="10" value="${esc(NEWL.name)}"></label>
+   <label>性別 ${seg('g', ['f', 'm'], ['女', '男'])}</label>
+   <label>膚色 ${sw('sk', R.SKINS)}</label>
+   <label>髮型 ${seg('hair', [0, 1, 2, 3, 5, 6, 7], ['短', '旁分', '中長', '平頭', '鮑伯', '長髮', '丸子'])}</label>
+   <label>髮色 ${sw('hc', R.HCOL.slice(0, 2).concat(['#7a3a24']))}</label>
+   <label>衣服 ${sw('top', TOPS)}</label>
+   <label>年齡 ${seg('age', [22, 25, 28, 32, 38])}</label>
+   <label>會說阿美族語 ${seg('lang', ['false', 'true'], ['不太會', '會一些'])}</label>
+  </div>
+  <div class="opts" style="margin-top:14px"><button class="btn" id="fGo">報到上班！</button><button class="btn alt" id="fBack">返回</button></div>`;
+  const pv = $('pv'), pc = pv.getContext('2d');
+  const drawPv = () => { pc.setTransform(2, 0, 0, 2, 0, 0); pc.clearRect(0, 0, 120, 150); R.person(pc, 60, 140, 118, lookOf(NEWL), 'stand', performance.now() / 1000, 1, {}); };
+  drawPv(); const iv = setInterval(() => { if (!document.body.contains(pv)) clearInterval(iv); else drawPv(); }, 60);
+  $('titleBox').querySelectorAll('.seg').forEach(s => s.onclick = e => { const b = e.target.closest('button'); if (!b) return; const k = s.dataset.k; let v = b.dataset.v; if (k === 'lang') v = v === 'true'; else if (k !== 'top' && k !== 'g') v = +v; if (k === 'g' && NAMES[NEWL.g].includes(NEWL.name)) NEWL.name = U.pick(NAMES[v]); NEWL[k] = v; if (k === 'hc' && v === 2) NEWL.hc = 1; createScreen(); });
+  $('fName').oninput = e => (NEWL.name = e.target.value.trim());
+  $('fBack').onclick = titleScreen;
+  $('fGo').onclick = () => { NEWL.name = $('fName').value.trim() || U.pick(NAMES[NEWL.g]); SIM.newLife({ name: NEWL.name, g: NEWL.g, look: lookOf(NEWL), age: NEWL.age, lang: NEWL.lang }); SIM.save(); startGame(); };
+}
+const lookOf = L => ({ sk: L.sk, hair: L.hair, hc: L.hc, top: L.top, g: L.g, age: L.age });
+
+function startGame() {
+  $('title').hidden = true; ['top', 'loc', 'rightBtns', 'bottom'].forEach(k => ($(k).hidden = false));
+  $('endOv').hidden = true; $('feed').innerHTML = '';
+  SIM.ev.length = 0; UI.speed = 1; setSpeed(1); layoutHUD(); UI.tab = null; renderSheet(); refreshHUD(true);
+  for (const l of S.log.slice(-3)) feed(l.m, l.kind);
+}
+
+/* ---------- 速度 ---------- */
+function setSpeed(s) { UI.speed = s; document.querySelectorAll('#speed button').forEach(b => b.classList.toggle('on', +b.dataset.s === s)); }
+$('speed').onclick = e => { const b = e.target.closest('button'); if (b) setSpeed(+b.dataset.s); };
+
+/* ---------- 主迴圈 ---------- */
+let last = performance.now(), acc = 0, hudT = 0;
+function loop(now) {
+  const dt = Math.min(0.1, (now - last) / 1000); last = now; UI.t += dt;
+  if (S.name && !S.dead && $('title').hidden) step(dt);
+  else if (S.name && SIM.ev.length) handleEvents();
+  draw();
+  hudT -= dt; if (hudT <= 0 && S.name) { hudT = 0.25; refreshHUD(); }
+  requestAnimationFrame(loop);
+}
+function step(dt) {
+  /* 事件視窗打開時暫停 */
+  if (S.eventQ.length) { if (S.autoFull) { SIM.autoEvent(); } else { if ($('evOv').hidden) showEvent(); return; } }
+  if (UI.speed === 0) return;
+  /* 走路（畫面時間） */
+  if (S.walkTo != null) {
+    const sp = 0.3 * (UI.speed >= 2 ? 2 : 1) * dt, d = S.walkTo - S.x;
+    S.face = d > 0 ? 1 : -1;
+    if (Math.abs(d) <= sp) { S.x = S.walkTo; S.walkTo = null; } else S.x += Math.sign(d) * sp;
+  }
+  if (S.auto) SIM.autoPlan();
+  let rate = SPEEDS[UI.speed];
+  const c = S.cur;
+  if (c && (c.sleep || c.obj === 'faint')) rate = Math.max(rate, 120);          /* 睡覺快轉 */
+  else if (c && c.kind === 'travel') rate = Math.max(rate, 6);
+  if (S.autoFull) { rate = [0, 360, 1440, 4320][UI.speed]; if (S.walkTo != null) { S.x = S.walkTo; S.walkTo = null; } }
+  acc += dt * rate;
+  let n = Math.floor(acc); acc -= n; n = Math.min(n, 4000);
+  while (n-- > 0 && !S.dead && (S.autoFull || !S.eventQ.length)) {
+    if (S.walkTo != null) { /* 走路中也要讓時間前進 */ }
+    SIM.tick(1);
+    if (S.autoFull && S.walkTo != null) { S.x = S.walkTo; S.walkTo = null; }
+    if (S.auto && !S.cur && !S.queue.length && S.walkTo == null) SIM.autoPlan();
+    if (S.autoFull && S.eventQ.length) SIM.autoEvent();
+  }
+  handleEvents();
+}
+function handleEvents() {
+  const evs = SIM.ev.splice(0);
+  for (const e of evs) {
+    switch (e.k) {
+      case 'log': if (S.autoFull ? e.kind === 'big' : true) feed(e.m, e.kind); if (e.kind === 'big') SFX.big(); break;
+      case 'toast': if (!S.autoFull) toast(e.m); break;
+      case 'sfx': SFX[e.s] && SFX[e.s](); break;
+      case 'done': SFX.done(); break;
+      case 'fail': SFX.fail(); break;
+      case 'day': if (!S.autoFull || SIM.cal().d === 1) SIM.save(); if (UI.tab && UI.tab !== 'log') renderSheet(); break;
+      case 'arrive': UI.menu = null; $('menu').hidden = true; break;
+      case 'dead': SIM.save(); setTimeout(showEnd, 600); break;
+      case 'grade': if (UI.tab === 'job') renderSheet(); break;
+    }
+  }
+  if (evs.some(e => e.k === 'queue' || e.k === 'done' || e.k === 'step' || e.k === 'day')) { renderQueue(); if (UI.tab === 'task') renderSheet(); }
+}
+requestAnimationFrame(loop);
+
+/* ---------- 繪製 ---------- */
+const ICON = { sleep: '💤', nap: '💤', study: '📖', lang: '🗣️', web: '📱', cook: '🍳', snack: '🍜', tv: '📺', call: '📞', shower: '🚿', clockin: '⏰', clockout: '⏰', report: '📝', walk: '🌾', ride: '🚲', bento: '🍱', coffee: '☕', onigiri: '🍙', doctor: '🩺', checkup: '🩺', jog: '🏃', sit: '🌅', faint: '😵' };
+function poseOf() {
+  const c = S.cur;
+  if (S.walkTo != null) return ['walk', null];
+  if (!c) return ['stand', null];
+  if (c.kind === 'npc') return [c.act === 'meal' ? 'eat' : 'talk', c.act === 'meal' ? '🍱' : c.act === 'confess' ? '💗' : c.act === 'propose' ? '💍' : '💬'];
+  if (c.kind === 'task') { const t = S.tasks.find(q => q.uid === c.uid); const o = t ? SIM.taskAt(t).obj : 'desk'; return [/desk|counter|vo/.test(o) ? 'type' : o === 'meeting' ? 'sit' : /street|paddy/.test(o) ? 'walk' : 'talk', '📋']; }
+  const a = c.act;
+  const P = { sleep: 'sleep', nap: 'sleep', faint: 'sleep', study: 'type', lang: 'type', web: 'phone', cook: 'stand', snack: 'eat', bento: 'eat', onigiri: 'eat', coffee: 'eat', tv: 'sit', call: 'phone', jog: 'jog', walk: 'walk', ride: 'ride', sit: 'sit', doctor: 'sit', checkup: 'sit', report: 'talk', shower: 'hide' };
+  return [P[a] || 'stand', ICON[a] || null];
+}
+function env() {
+  const c = SIM.cal(), h = S.min / 60;
+  const rainy = S.typhoon > 0 || ((c.m === 5 || c.m === 6) && (S.day * 7919) % 5 === 0);
+  return { hour: h, min: S.min, season: D.SEASON(c.m), month: c.m, rain: rainy, night: R.sky(h).night, up: S.upgrades || {}, tvOn: S.cur && S.cur.act === 'tv', spouse: S.spouse, lampBroken: S.tasks.some(t => t.id === 'report'), cropLoss: S.tasks.some(t => t.id === 'crop_loss') };
+}
+function personH() { return R.ph(H); }
+function draw() {
+  cx.clearRect(0, 0, W, H);
+  if (!S.name) { /* 標題背景 */ const e = { hour: 10 + Math.sin(UI.t * 0.05) * 6, season: '秋', rain: false }; R.valley(cx, 0, 0, W, H, e.hour, e.season, false); return; }
+  const E = env();
+  if (S.cur && S.cur.kind === 'travel') return drawTravel(E);
+  R.drawScene(cx, W, H, S.loc, UI.t, E);
+  const fy = E.fy, ph = personH();
+  /* NPC */
+  for (const o of D.OBJ[S.loc] || []) {
+    if (!o.npc) continue;
+    const N = D.NPCS[o.npc]; if (o.npc === 'chief' && S.rank === 5) continue;
+    const look = N ? N.look : { sk: 1, hair: 4, hc: 2, top: '#8a9a7a', g: 'f', age: 58 };
+    const talking = S.cur && S.cur.kind === 'npc' && S.cur.npc === o.npc;
+    const nx = o.x * W + (o.npc === 'random' ? Math.sin(UI.t * 0.3) * 30 : 0);
+    R.person(cx, nx, fy + 6, ph * (look.age > 70 ? 0.94 : 1), look, talking ? 'talk' : o.npc === 'chief' ? 'type' : o.npc === 'random' ? 'walk' : 'stand', UI.t + o.x * 9, S.x * W < nx ? -1 : 1, {});
+  }
+  /* 背景人物：同事、家人 */
+  if (S.loc === 'office' && SIM.isWorkday() && S.min > 7.8 * 60 && S.min < 17.6 * 60) R.person(cx, W * 0.52 + 70, fy + 6, ph, D.NPCS.coworker.look, 'type', UI.t + 3, -1, {});
+  if (S.loc === 'home' && S.spouse && (S.min > 18 * 60 || S.min < 7 * 60 || !SIM.isWorkday())) R.person(cx, W * 0.7, fy + 6, ph, D.NPCS[S.spouse].look, S.min > 22.5 * 60 || S.min < 6 * 60 ? 'sit' : 'sit', UI.t + 5, -1, {});
+  if (S.loc === 'home') S.kids.filter(k => !k.left).forEach((k, i) => { const kh = ph * U.clamp(0.35 + k.age / 22, 0.35, 0.95); R.person(cx, W * (0.58 + i * 0.06), fy + 8, kh, { sk: S.look.sk, hair: k.g === 'f' ? 6 : 0, hc: S.look.hc, top: ['#f4a261', '#8ab17d', '#e76f51'][i % 3], g: k.g, age: Math.max(4, k.age) }, 'stand', UI.t + i * 2, 1, {}); });
+  /* 玩家 */
+  const [pose, icon] = poseOf();
+  if (pose !== 'hide') {
+    let px = S.x * W, py = fy + 6;
+    const look = Object.assign({}, S.look, { age: S.age });
+    if (pose === 'sleep' && S.loc === 'home') { px = W * 0.21; py = fy - 116; }
+    if ((pose === 'jog' || pose === 'walk') && S.walkTo == null && S.cur) { px += Math.sin(UI.t * 0.6) * W * 0.12; S.face = Math.cos(UI.t * 0.6) > 0 ? 1 : -1; }
+    R.person(cx, px, py, ph, look, pose === 'sleep' && S.loc === 'home' ? 'sleep' : pose, UI.t, S.face, { icon, vest: S.cur && S.cur.kind === 'task' && S.loc !== 'office', mood: SIM.mood() < 30 ? 'sad' : '' });
+    if (pose === 'sleep' && S.loc === 'home') { R.box(cx, W * 0.125, fy - 96, W * 0.135, 34, '#8fb3c9', 12); R.box(cx, W * 0.125, fy - 96, W * 0.135, 8, '#a9c8da', 4, 0); }
+    /* 名牌與目標標記 */
+    if (S.walkTo != null) { R.E(cx, S.walkTo * W, fy + 10, 16, 5, null, 'rgba(61,110,140,.7)', 2); }
+    if (pose !== 'sleep') { cx.font = '700 12px "Huninn","Noto Sans TC",sans-serif'; const tw = cx.measureText(S.name).width + 12; R.box(cx, px - tw / 2, fy + 12, tw, 18, 'rgba(43,38,34,.7)', 8, 0); R.txt(cx, S.name, px, fy + 25, 12, '#fff'); }
+  } else { /* 洗澡 */ for (let i = 0; i < 6; i++) R.E(cx, W * 0.91 + Math.sin(UI.t * 2 + i) * 12, fy - 150 - ((UI.t * 30 + i * 25) % 120), 10, 10, 'rgba(255,255,255,.55)'); }
+  /* 物件提示 */
+  if (UI.hover) { const o = UI.hover; R.E(cx, o.x * W, fy + 10, 34, 7, null, 'rgba(233,196,106,.9)', 3); }
+  for (const o of D.OBJ[S.loc] || []) { if (!o.task) continue; const n = SIM.tasksFor(S.loc, o.id, o.task).length; if (!n) continue; const bx = o.x * W, by = fy - personH() * 1.45 - Math.abs(Math.sin(UI.t * 3)) * 5; R.box(cx, bx - 13, by - 13, 26, 24, '#c8402a', 9, 0); R.PL(cx, [[bx - 5, by + 10], [bx + 5, by + 10], [bx, by + 16]], '#c8402a'); R.txt(cx, '!' + (n > 1 ? n : ''), bx, by + 5, 14, '#fff'); }
+}
+function drawTravel(E) {
+  const fy = H - Math.max(130, H * 0.2);
+  R.valley(cx, 0, 0, W, fy, E.hour, E.season, E.rain);
+  cx.fillStyle = '#6a6a68'; cx.fillRect(0, fy - 40, W, H - fy + 40); cx.fillStyle = '#f2f2ee';
+  const off = (UI.t * 260) % 80; for (let x = -off; x < W; x += 80) cx.fillRect(x, fy - 4, 40, 5);
+  for (let i = 0; i < 6; i++) { const x = ((i * 233 - UI.t * 180) % (W + 100) + W + 100) % (W + 100) - 50; cx.fillStyle = '#4a7a3a'; cx.fillRect(x, fy - 70, 6, 30); R.E(cx, x + 3, fy - 78, 16, 14, '#5a9a4a'); }
+  const px = W * 0.45, py = fy + 26, ph = personH(), bob = Math.sin(UI.t * 20) * 1.2;
+  /* 機車 */
+  const oy = py - ph * 0.22 + bob, col = S.upgrades.scooter ? '#2a9d8f' : '#c8402a', s = ph / 100;
+  R.E(cx, px - ph * 0.3, oy + ph * 0.02, ph * 0.13, ph * 0.13, '#222'); R.E(cx, px + ph * 0.36, oy + ph * 0.02, ph * 0.13, ph * 0.13, '#222');
+  R.E(cx, px - ph * 0.3, oy + ph * 0.02, ph * 0.05, ph * 0.05, '#aaa'); R.E(cx, px + ph * 0.36, oy + ph * 0.02, ph * 0.05, ph * 0.05, '#aaa');
+  R.box(cx, px - ph * 0.44, oy - ph * 0.36, ph * 0.42, ph * 0.3, col, 12); R.box(cx, px - ph * 0.12, oy - ph * 0.08, ph * 0.44, ph * 0.08, R.shade(col, 0.8), 4);
+  R.box(cx, px - ph * 0.42, oy - ph * 0.42, ph * 0.36, ph * 0.08, '#3a2e28', 6);
+  R.person(cx, px - 4, oy, ph, Object.assign({}, S.look, { age: S.age }), 'ride', UI.t, 1, { noChair: 1 });
+  R.box(cx, px + ph * 0.26, oy - ph * 0.62, ph * 0.12, ph * 0.6, col, 6); R.box(cx, px + ph * 0.16, oy - ph * 0.66, ph * 0.18, ph * 0.05, '#333', 3); R.E(cx, px + ph * 0.38, oy - ph * 0.5, ph * 0.04, ph * 0.04, '#fff6b0');
+  cx.beginPath(); cx.arc(px - 4 * s - 1, oy - 98 * s - 4 * s, 20 * s, Math.PI * 1.05, Math.PI * 1.95); cx.closePath(); cx.fillStyle = '#f2f2ee'; cx.fill(); cx.strokeStyle = 'rgba(0,0,0,.3)'; cx.lineWidth = 1.5; cx.stroke();   /* 安全帽 */
+  const c = S.cur; R.box(cx, W / 2 - 130, 90, 260, 44, 'rgba(255,253,247,.94)', 14, 0);
+  R.txt(cx, `🛵 前往${D.LOCS[c.to].n}`, W / 2, 112, 16, '#2b2622'); R.txt(cx, `約 ${Math.ceil(c.left)} 分鐘`, W / 2, 128, 11, '#7a7266', 500);
+}
+
+/* ---------- 點選場景 ---------- */
+function objAt(px, py) {
+  const fy = H - Math.max(130, H * 0.2);
+  if (py > fy + 40 || py < fy - personH() * 2.6) return null;
+  let best = null, bd = Math.max(46, W * 0.07);
+  for (const o of D.OBJ[S.loc] || []) { const d = Math.abs(o.x * W - px); if (d < bd) { bd = d; best = o; } }
+  return best;
+}
+cv.addEventListener('pointermove', e => { if (!S.name || e.pointerType !== 'mouse') return; UI.hover = S.cur && S.cur.kind === 'travel' ? null : objAt(e.clientX, e.clientY); cv.style.cursor = UI.hover ? 'pointer' : 'default'; });
+cv.addEventListener('pointerdown', e => {
+  if (!S.name || S.dead || !$('title').hidden) return;
+  if (!$('menu').hidden) { closeMenu(); return; }
+  if (UI.tab) { UI.tab = null; renderSheet(); }
+  if (S.cur && S.cur.kind === 'travel') { toast('騎車中……'); return; }
+  const o = objAt(e.clientX, e.clientY);
+  if (o) openMenu(o, e.clientX, e.clientY);
+  else { const fy = H - Math.max(130, H * 0.2); if (e.clientY > fy - 260 && e.clientY < fy + 40 && !S.cur) { S.walkTo = U.clamp(e.clientX / W, 0.04, 0.96); } }
+});
+function closeMenu() { $('menu').hidden = true; UI.menu = null; }
+function taskTarget(t) {
+  const at = SIM.taskAt(t); const site = t.site && t.left === 1 ? D.TASK[t.id].site.split('.') : null;
+  const loc = site ? site[0] : at.loc, ob = site ? site[1] : at.obj;
+  const obj = ob === 'house' ? (S.loc === loc && S.x > 0.6 ? 'house3' : S.x > 0.3 && S.loc === loc ? 'house2' : 'house1') : ob === 'street' ? 'lamp' : ob;
+  return { loc, obj };
+}
+function openMenu(o, px, py) {
+  const items = [];
+  for (const k in o.acts) { const a = o.acts[k]; items.push({ l: `${ICON[k] || '•'} ${a.n}`, s: `${a.dur >= 60 ? (a.dur / 60).toFixed(a.dur % 60 ? 1 : 0) + ' 小時' : a.dur + ' 分鐘'}${a.cost ? `・$${a.cost}` : ''}`, f: () => SIM.push({ kind: 'obj', loc: S.loc, obj: o.id, act: k }) }); }
+  if (o.task) for (const t of SIM.tasksFor(S.loc, o.id, o.task)) { const T = D.TASK[t.id]; items.push({ task: 1, l: `📋 ${T.n}`, s: `${T.t} 分鐘${t.left > 1 ? `・還要 ${t.left} 次` : ''}・${dueStr(t)}`, f: () => SIM.push({ kind: 'task', uid: t.uid, loc: S.loc, obj: o.id }) }); }
+  if (o.npc) {
+    const k = o.npc, N = D.NPCS[k];
+    if (k === 'random') items.push({ l: '💬 打招呼聊天', s: '25 分鐘', f: () => SIM.push({ kind: 'npc', npc: 'random', act: 'chat', loc: S.loc, obj: o.id }) });
+    else {
+      items.push({ l: '💬 聊天', s: '25 分鐘・增進關係', f: () => SIM.push({ kind: 'npc', npc: k, act: 'chat', loc: S.loc, obj: o.id }) });
+      if (k === 'chief' || k === 'head') items.push({ l: '⚖️ 請教業務', s: '30 分鐘・法規經驗', f: () => SIM.push({ kind: 'npc', npc: k, act: 'ask', loc: S.loc, obj: o.id }) });
+      if (k === 'elder' || k === 'carer') items.push({ l: '🗣️ 請教族語', s: '40 分鐘・阿美族語', f: () => SIM.push({ kind: 'npc', npc: k, act: 'lang', loc: S.loc, obj: o.id }) });
+    }
+  }
+  if (!o.task && !o.npc && !items.length) items.push({ l: '（現在沒有可以做的事）', f: () => {} });
+  if (o.task && !SIM.tasksFor(S.loc, o.id, o.task).length) items.push({ l: '目前沒有這裡的案件', s: '到「📋 案件」看待辦清單', f: () => {} });
+  const m = $('menu');
+  const N = o.npc && D.NPCS[o.npc];
+  m.innerHTML = `<div class="mt">${esc(N ? N.n : o.n)}<small>${N ? esc(N.role) : esc(D.LOCS[S.loc].n)}</small></div>` + items.map((it, i) => `<button class="mi ${it.task ? 'task' : ''}" data-i="${i}">${esc(it.l)}${it.s ? `<small>${esc(it.s)}</small>` : ''}</button>`).join('');
+  m.hidden = false;
+  const r = m.getBoundingClientRect();
+  m.style.left = U.clamp(px - r.width / 2, 8, W - r.width - 8) + 'px';
+  m.style.top = U.clamp(py - r.height - 14, 8 + 40, H - r.height - 120) + 'px';
+  m.onclick = e => { const b = e.target.closest('.mi'); if (!b) return; const it = items[+b.dataset.i]; it.f(); SFX.pop(); closeMenu(); renderQueue(); };
+  UI.menu = o;
+}
+const dueStr = t => { const d = t.due - S.day; return d < 0 ? `逾期 ${-d} 天` : d === 0 ? '今天到期' : `${d} 天內`; };
+
+/* ---------- 佇列 ---------- */
+function actName(a) {
+  if (a.kind === 'go') return `🛵 前往${D.LOCS[a.loc].n}`;
+  if (a.kind === 'task') { const t = S.tasks.find(q => q.uid === a.uid); return t ? `📋 ${D.TASK[t.id].n}` : '📋 案件'; }
+  if (a.kind === 'npc') { const N = D.NPCS[a.npc]; return `💬 ${N ? N.n : '路人'}`; }
+  const o = SIM.objOf(a.loc, a.obj); const act = o && o.acts[a.act]; return `${ICON[a.act] || '•'} ${act ? act.n : a.act}`;
+}
+let qSig = '';
+function renderQueue() {
+  const c = S.cur;
+  const sig = (c ? c.n + Math.round((1 - c.left / c.tot) * 30) : '') + '|' + S.queue.map(actName).join('|') + (S.walkTo != null);
+  if (sig === qSig) return; qSig = sig;
+  let h = '';
+  if (c) h += `<div class="qi cur"><span>${c.kind === 'travel' ? '🛵' : poseOf()[1] || '▶'} ${esc(c.n)}</span>${c.kind !== 'travel' && c.obj !== 'faint' ? '<button class="x" data-i="-1">✕</button>' : ''}<div class="bar"><i style="width:${(1 - c.left / c.tot) * 100}%"></i></div></div>`;
+  else if (S.walkTo != null) h += `<div class="qi cur"><span>🚶 走過去</span></div>`;
+  S.queue.forEach((a, i) => (h += `<div class="qi"><span>${esc(actName(a))}</span><button class="x" data-i="${i}">✕</button></div>`));
+  if (!c && !S.queue.length && S.walkTo == null) h += `<div class="qi" style="opacity:.8"><span>${S.auto ? '🤖 自動安排中…' : '💡 點畫面上的東西安排動作'}</span></div>`;
+  $('queue').innerHTML = h;
+}
+$('queue').onclick = e => { const b = e.target.closest('.x'); if (!b) return; SIM.cancel(+b.dataset.i); qSig = ''; renderQueue(); };
+
+/* ---------- HUD ---------- */
+const MOOD_FACE = m => (m > 75 ? '😄' : m > 55 ? '🙂' : m > 35 ? '😐' : m > 18 ? '😟' : '😫');
+function refreshHUD(force) {
+  if (!S.name) return;
+  const c = SIM.cal();
+  $('clk').textContent = U.hm(S.min);
+  $('date').textContent = `${c.y}年${c.m}月${c.d}日 週${D.WEEK[c.w]}${SIM.isWorkday() ? '' : '・休'}`;
+  $('money').textContent = U.fmt(S.money); $('money').style.color = S.money < 0 ? '#c8402a' : '';
+  const m = SIM.mood(); $('moodC').firstChild.textContent = MOOD_FACE(m) + ' '; $('mood').textContent = SIM.moodName();
+  $('locN').textContent = S.cur && S.cur.kind === 'travel' ? '在路上' : D.LOCS[S.loc].n; $('locS').textContent = S.cur && S.cur.kind === 'travel' ? '騎機車中' : D.LOCS[S.loc].sub;
+  $('bAuto').classList.toggle('on', !!S.auto); $('bAuto').querySelector('small').textContent = S.autoFull ? '全自動' : S.auto ? '自動中' : '自動';
+  const overdue = S.tasks.filter(t => t.due <= S.day).length; $('taskDot').hidden = !S.tasks.length; $('taskDot').textContent = S.tasks.length; $('taskDot').style.background = overdue ? '#c8402a' : '#3d6e8c';
+  renderQueue(); if (force) layoutHUD();
+  if (UI.tab === 'need' || force) renderSheet();
+}
+
+/* ---------- 面板 ---------- */
+$('tabs').onclick = e => { const b = e.target.closest('button'); if (!b) return; UI.tab = UI.tab === b.dataset.t ? null : b.dataset.t; closeMenu(); renderSheet(); };
+const barCol = v => (v > 60 ? '#7fa650' : v > 30 ? '#e9c46a' : '#c8402a');
+const meter = (v, col) => `<div class="meter"><i style="width:${U.clamp(v, 0, 100)}%;background:${col || barCol(v)}"></i></div>`;
+function renderSheet() {
+  document.querySelectorAll('#tabs button').forEach(b => b.classList.toggle('on', b.dataset.t === UI.tab));
+  const sh = $('sheet'); sh.hidden = !UI.tab; if (!UI.tab || !S.name) return;
+  const keep = sh.scrollTop;
+  sh.innerHTML = PANELS[UI.tab]();
+  sh.scrollTop = keep;
+}
+const PANELS = {
+  need() {
+    let h = `<h3>${MOOD_FACE(SIM.mood())} ${SIM.moodName()}<small>${esc(S.name)}・${Math.floor(S.age)} 歲${S.ill ? `・🤒 ${S.ill.n}` : ''}</small></h3><div class="grid2">`;
+    for (const k in D.NEEDS) h += `<div class="need"><div class="lb"><span>${D.NEEDS[k].ic} ${D.NEEDS[k].n}</span><b>${Math.round(S.needs[k])}</b></div>${meter(S.needs[k])}</div>`;
+    h += `<div class="need"><div class="lb"><span>😣 壓力</span><b>${Math.round(S.stress)}</b></div>${meter(S.stress, S.stress > 70 ? '#c8402a' : S.stress > 45 ? '#e9c46a' : '#7fa650')}</div>`;
+    h += `<div class="need"><div class="lb"><span>💗 健康</span><b>${Math.round(S.health)}</b></div>${meter(S.health)}</div></div>`;
+    const tips = [];
+    if (S.needs.hunger < 30) tips.push('肚子餓了：家裡煮飯、街區買便當或御飯糰。');
+    if (S.needs.energy < 25) tips.push('很累了：回家睡覺或小睡，或去超商買咖啡。精力歸零會就地昏睡，騎車也容易出事。');
+    if (S.needs.hygiene < 30) tips.push('該洗澡了。');
+    if (S.needs.social < 30) tips.push('有點孤單：找人聊天或和家人視訊。');
+    if (S.stress > 60) tips.push('壓力很大：去大坡池散步、騎單車、看電視。長期高壓會傷害健康。');
+    if (S.health < 50) tips.push('健康不佳：到衛生所看診或健檢，多運動、早點睡。');
+    if (SIM.isWorkday() && !S.clocked && S.min < 17 * 60) tips.push('今天要上班！到池上鄉公所的打卡機打卡（8:00 前）。');
+    if (tips.length) h += `<div class="card" style="margin-top:8px">${tips.map(t => `<div class="desc" style="margin:2px 0">💡 ${t}</div>`).join('')}</div>`;
+    return h;
+  },
+  task() {
+    const c = SIM.cal();
+    let h = `<h3>📋 待辦案件 <small>${SIM.isWorkday() ? (S.clocked ? (S.clockOut ? '已下班' : '✅ 已打卡上班') : '⚠️ 尚未打卡') : '今天放假'}</small></h3>`;
+    h += `<div class="desc" style="margin:-4px 0 8px">家戶訪問 ${S.visits}／${S.visitGoal} 戶・年度績效 ${Math.round(S.perf)}・村民信任 ${Math.round(S.trust)}・本月：${D.MONTH_NOTE[c.m]}</div>`;
+    if (S.retired) return h + '<div class="card">已經退休了，好好享受生活吧。</div>';
+    if (!S.tasks.length) h += '<div class="card desc">目前沒有待辦案件。上午可以在公所向所長請教業務，下午到村辦公處坐班。</div>';
+    const list = S.tasks.slice().sort((a, b) => a.due - b.due);
+    for (const t of list) {
+      const T = D.TASK[t.id], tg = taskTarget(t), d = t.due - S.day;
+      h += `<div class="card tap" data-uid="${t.uid}"><div class="trow"><b>${esc(T.n)}</b><span class="tag ${d < 0 ? 'r' : d === 0 ? 'y' : ''}">${dueStr(t)}</span></div>
+      <div style="margin-top:4px"><span class="tag g">📍 ${D.LOCS[tg.loc].n}・${esc((SIM.objOf(tg.loc, tg.obj) || {}).n || '')}</span><span class="tag">${T.t} 分</span>${t.left > 1 ? `<span class="tag y">還要 ${t.left} 次</span>` : ''}<span class="tag">${D.SKILLS[T.sk].ic} ${D.SKILLS[T.sk].n}</span></div>
+      <div class="desc">${esc(T.desc)}</div><div class="acts"><button class="btn s" data-do="${t.uid}">加入待辦（自動前往）</button></div></div>`;
+    }
+    return h;
+  },
+  ppl() {
+    let h = '<h3>👥 人際關係</h3>';
+    if (S.spouse) h += `<div class="card"><b>💍 ${esc(D.NPCS[S.spouse].n)}</b>（配偶）${S.kids.length ? `<div class="desc">孩子：${S.kids.map(k => `${esc(k.n)}（${Math.floor(k.age)} 歲${k.left ? '・在外地' : ''}）`).join('、')}</div>` : ''}</div>`;
+    for (const k in D.NPCS) {
+      const N = D.NPCS[k], r = S.rel[k]; if (!r.met || k === S.spouse) continue;
+      const st = r.stage === 'dating' ? '<span class="tag r">交往中</span>' : r.stage === 'married' ? '' : '';
+      h += `<div class="card"><div class="trow"><b>${esc(N.n)} ${st}</b><small style="color:var(--mute)">${esc(N.role)}</small></div>${meter((r.v + 100) / 2, r.v < 0 ? '#c8402a' : '#e76f8a')}<div class="acts">`;
+      h += `<button class="btn s alt" data-npc="${k}" data-a="chat">📞 打電話聊天</button>`;
+      if (N.date || k.startsWith('coworker')) h += `<button class="btn s alt" data-npc="${k}" data-a="meal">🍱 約吃飯 $400</button>`;
+      if (N.date && !S.spouse) { if (!r.stage) h += `<button class="btn s" data-npc="${k}" data-a="confess" ${r.v < 40 ? 'disabled' : ''}>💗 告白</button>`; if (r.stage === 'dating') h += `<button class="btn s red" data-npc="${k}" data-a="propose" ${r.v < 70 || S.money < 150000 ? 'disabled' : ''}>💍 求婚（婚禮 15 萬）</button>`; }
+      h += `<button class="btn s alt" data-npc="${k}" data-a="gift">🎁 送伴手禮 $500</button></div></div>`;
+    }
+    h += '<div class="desc">在公所、村辦公處、部落、文健站可以直接點人物互動。認識新朋友要靠緣分（隨機事件）。</div>';
+    return h;
+  },
+  skill() {
+    let h = '<h3>📚 技能 <small>在家讀書、上族語課、跑步，或做案件時都會成長</small></h3>';
+    for (const k in D.SKILLS) { const lv = SIM.lv(k), xp = S.sk[k] || 0, a = lv * lv * 12, b = (lv + 1) * (lv + 1) * 12; h += `<div class="need" style="margin-bottom:8px"><div class="lb"><span>${D.SKILLS[k].ic} ${D.SKILLS[k].n}</span><b>Lv ${lv}</b></div>${meter(lv >= 10 ? 100 : (xp - a) / (b - a) * 100, '#3d6e8c')}</div>`; }
+    h += '<div class="desc">法規熟悉與行政公文影響案件成功率與升官等考試；阿美族語讓部落與文健站的工作更順利；溝通協調讓陳情與臨櫃更好處理。</div>';
+    return h;
+  },
+  job() {
+    const R0 = D.RANKS[S.rank];
+    const pay = S.retired ? '月退俸' : `${U.fmt(R0.pay + S.step * 1100 + Math.floor(S.years) * 120)} 元／月`;
+    let h = `<h3>🏛️ ${esc(R0.n)}<small>${R0.grade}${S.retired ? '・已退休' : ''}</small></h3>`;
+    h += `<div class="kv"><span>服務年資</span><b>${S.years} 年</b></div><div class="kv"><span>月薪</span><b>${pay}</b></div><div class="kv"><span>今年績效</span><b>${Math.round(S.perf)}</b></div><div class="kv"><span>家戶訪問</span><b>${S.visits}／${S.visitGoal}</b></div><div class="kv"><span>村民信任</span><b>${Math.round(S.trust)}</b></div><div class="kv"><span>今年遲到／早退／曠職</span><b>${S.late}／${S.early}／${S.absent}</b></div><div class="kv"><span>所長好感</span><b>${Math.round(S.rel.chief.v)}</b></div>`;
+    h += `<div style="margin:10px 0 4px;font-weight:700">歷年考績</div><div class="grades">${S.grades.length ? S.grades.map(g => `<i class="${g === '乙' ? 'b' : g === '丙' ? 'c' : ''}">${g}</i>`).join('') : '<span class="desc">年底（1 月初）打考績</span>'}</div>`;
+    h += `<div style="margin:10px 0 4px;font-weight:700">升遷之路</div>${D.RANKS.map((r, i) => `<div class="kv"><span>${i === S.rank ? '👉 ' : ''}${r.n}</span><b style="${i === S.rank ? 'color:var(--red)' : i < S.rank ? 'color:var(--mute)' : ''}">${r.grade}${r.exam ? '（需升官等考試）' : ''}</b></div>`).join('')}`;
+    h += `<div class="desc" style="margin-top:8px">考績看年度績效（完成案件）、出勤、家戶訪問達標與所長評價。委任內連續甲等可晉升；委任五職等可報考升官等考試；所長出缺時優秀課員有機會接任。65 歲屆齡退休，60 歲且年資滿 25 年可自願退休。</div>`;
+    h += `<div style="margin:10px 0 4px;font-weight:700">工作紀錄</div><div class="kv"><span>完成案件</span><b>${S.stats.cases}</b></div><div class="kv"><span>家戶訪視</span><b>${S.stats.visits}</b></div><div class="kv"><span>協助申請補助</span><b>${S.stats.helped}</b></div><div class="kv"><span>參與豐年祭</span><b>${S.stats.festivals}</b></div><div class="kv"><span>加班</span><b>${S.stats.overtime} 次</b></div>`;
+    return h;
+  },
+  life() {
+    let h = `<h3>🏠 生活<small>存款 ${U.fmt(S.money)} 元</small></h3>`;
+    h += `<div class="kv"><span>住處</span><b>${S.house === 'rent' ? '租屋（月租 6,500）' : S.house === 'loan' ? `自有房屋（房貸剩 ${S.loanLeft} 個月）` : '自有房屋'}</b></div>`;
+    h += `<div class="kv"><span>家庭</span><b>${S.spouse ? `已婚・${S.kids.length} 個孩子` : '單身'}</b></div>`;
+    h += '<div style="margin:10px 0 6px;font-weight:700">購物</div>';
+    for (const it of D.SHOP) h += `<div class="card"><div class="trow"><b>${esc(it.n)}</b><button class="btn s ${S.upgrades[it.id] ? 'alt' : 'gold'}" data-buy="${it.id}" ${S.upgrades[it.id] ? 'disabled' : ''}>${S.upgrades[it.id] ? '已擁有' : '$' + U.fmt(it.price)}</button></div><div class="desc">${esc(it.d)}</div></div>`;
+    h += `<div style="margin:10px 0 6px;font-weight:700">設定</div><div class="acts">
+      <button class="btn s ${S.auto && !S.autoFull ? '' : 'alt'}" data-auto="1">🤖 自動生活（事件自己選）</button>
+      <button class="btn s ${S.autoFull ? '' : 'alt'}" data-auto="2">⏩ 全自動快轉人生</button>
+      <button class="btn s alt" data-auto="0">✋ 手動</button></div>
+      <div class="acts" style="margin-top:8px"><button class="btn s" id="pSave">💾 存檔</button><button class="btn s alt" id="pTitle">回標題</button><button class="btn s red" id="pNew">重新開始人生</button></div>
+      <div class="desc">每天自動存檔在這台裝置的瀏覽器裡（另有一份備份）。</div>`;
+    return h;
+  },
+  log() { return '<h3>📜 人生紀錄</h3>' + S.log.slice().reverse().map(l => { const c = SIM.cal(l.d); return `<div class="log ${l.kind || ''}"><small>${c.y}/${c.m}/${c.d} ${U.hm(l.t)}</small>${esc(l.m)}</div>`; }).join(''); },
+};
+$('sheet').onclick = e => {
+  const b = e.target.closest('button,[data-uid]'); if (!b) return;
+  if (b.dataset.do) { const t = S.tasks.find(q => q.uid === +b.dataset.do); if (t) { const g = taskTarget(t); SIM.push({ kind: 'task', uid: t.uid, loc: g.loc, obj: g.obj }); SFX.pop(); toast('已加入待辦'); renderQueue(); } return; }
+  if (b.dataset.npc) { SIM.push({ kind: 'npc', npc: b.dataset.npc, act: b.dataset.a }); SFX.pop(); toast('已加入待辦'); renderQueue(); return; }
+  if (b.dataset.buy) { const r = SIM.buy(b.dataset.buy); toast(r === 'ok' ? '買好了！' : r === 'money' ? '錢不夠' : '已經有了'); renderSheet(); return; }
+  if (b.dataset.auto) { const v = +b.dataset.auto; S.auto = v > 0; S.autoFull = v === 2; if (v === 2) setSpeed(3); renderSheet(); refreshHUD(); return; }
+  if (b.id === 'pSave') { toast(SIM.save() ? '已存檔' : '存檔失敗'); return; }
+  if (b.id === 'pTitle') { SIM.save(); hideGame(); titleScreen(); return; }
+  if (b.id === 'pNew') { if (!confirmNew()) return; SIM.wipe(); hideGame(); for (const k of Object.keys(S)) delete S[k]; createScreen(); $('title').hidden = false; return; }
+};
+function hideGame() { ['top', 'loc', 'rightBtns', 'bottom'].forEach(k => ($(k).hidden = true)); closeMenu(); $('feed').innerHTML = ''; }
+
+/* ---------- 右側按鈕 ---------- */
+$('bAuto').onclick = () => { if (!S.auto) { S.auto = true; S.autoFull = false; toast('🤖 自動生活：角色會自己安排（事件仍由你選）'); } else if (!S.autoFull) { S.autoFull = true; setSpeed(3); toast('⏩ 全自動：快轉人生，事件自動選擇'); } else { S.auto = false; S.autoFull = false; setSpeed(1); toast('✋ 改回手動'); } refreshHUD(); if (UI.tab === 'life') renderSheet(); };
+$('bSave').onclick = () => toast(SIM.save() ? '💾 已存檔' : '存檔失敗');
+$('bMap').onclick = openMap;
+$('moodC').onclick = () => { UI.tab = 'need'; renderSheet(); };
+
+/* ---------- 地圖 ---------- */
+let mapHover = null;
+function openMap() {
+  if (S.cur && S.cur.kind === 'travel') { toast('騎車中……'); return; }
+  closeMenu(); $('mapOv').hidden = false; drawMap();
+  $('locList').innerHTML = Object.keys(D.LOCS).map(k => `<button data-l="${k}" class="${k === S.loc ? 'here' : ''}"><b>${D.LOCS[k].n}</b><small>${k === S.loc ? '📍 你在這裡' : `${D.LOCS[k].sub}・約 ${Math.round(D.travel(S.loc, k) * (S.upgrades.scooter ? 0.75 : 1))} 分`}</small></button>`).join('');
+}
+function drawMap() {
+  const c = $('mapCv'), r = c.getBoundingClientRect(), d = Math.min(2, devicePixelRatio || 1);
+  c.width = Math.round(r.width * d); c.height = Math.round(r.height * d); const g = c.getContext('2d'); g.setTransform(d, 0, 0, d, 0, 0);
+  R.map(g, r.width, r.height, S.loc, mapHover, D);
+}
+function goTo(k) { $('mapOv').hidden = true; if (k === S.loc) return; SIM.push({ kind: 'go', loc: k }); SFX.pop(); renderQueue(); }
+$('locList').onclick = e => { const b = e.target.closest('button'); if (b) goTo(b.dataset.l); };
+$('mapClose').onclick = () => ($('mapOv').hidden = true);
+$('mapOv').onclick = e => { if (e.target === $('mapOv')) $('mapOv').hidden = true; };
+const mapPick = e => { const r = $('mapCv').getBoundingClientRect(); const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height; let best = null, bd = 0.08; for (const k in D.LOCS) { const p = D.LOCS[k].map; const d = Math.hypot(p[0] - x, (p[1] - y) * 0.75); if (d < bd) { bd = d; best = k; } } return best; };
+$('mapCv').addEventListener('pointermove', e => { const k = mapPick(e); if (k !== mapHover) { mapHover = k; drawMap(); } });
+$('mapCv').addEventListener('pointerdown', e => { const k = mapPick(e); if (k) goTo(k); });
+
+/* ---------- 事件 ---------- */
+function showEvent() {
+  const id = S.eventQ[0], E = SIM.EVENTS[id];
+  if (!E) { S.eventQ.shift(); return; }
+  closeMenu();
+  const text = E.x();
+  $('evBox').innerHTML = `<h2>${esc(E.t)}</h2><p>${esc(text)}</p><div class="opts">${E.o.map((o, i) => `<button class="btn ${i ? 'alt' : ''}" data-i="${i}">${esc(o[0])}</button>`).join('')}</div>`;
+  $('evOv').hidden = false; SFX.pop();
+  $('evBox').querySelector('.opts').onclick = ev => { const b = ev.target.closest('button'); if (!b) return; S.eventQ.shift(); SIM.choose(id, +b.dataset.i); $('evOv').hidden = true; handleEvents(); refreshHUD(true); };
+}
+
+/* ---------- 結局 ---------- */
+function showEnd() {
+  const d = S.dead, g = S.grades, cnt = k => g.filter(x => x === k).length;
+  const epi = S.stats.helped > 800 ? '「謝謝你，這些年一直陪著我們。」——大埔村的族人' : S.stats.cases > 3000 ? '一位踏實的公務員，把每一件小事都做好。' : S.years >= 1 ? '在縱谷裡認真生活過的人。' : '人生很短，來不及好好看看池上的稻浪。';
+  $('endBox').innerHTML = `<div style="text-align:center;font-size:40px">🌾</div><h2>${esc(S.name)}（${d.age} 歲）</h2><div class="epi">${esc(epi)}</div>
+  <div class="kv"><span>辭世</span><b>${esc(d.date)}・${esc(d.cause)}</b></div>
+  <div class="kv"><span>最高職務</span><b>${esc(D.RANKS[S.rank].n)}（${D.RANKS[S.rank].grade}）</b></div>
+  <div class="kv"><span>服務年資</span><b>${S.years} 年${S.retired ? '・光榮退休' : ''}</b></div>
+  <div class="kv"><span>考績</span><b>甲 ${cnt('甲')}・乙 ${cnt('乙')}・丙 ${cnt('丙')}</b></div>
+  <div class="kv"><span>完成案件</span><b>${U.fmt(S.stats.cases)} 件</b></div>
+  <div class="kv"><span>家戶訪視</span><b>${U.fmt(S.stats.visits)} 次</b></div>
+  <div class="kv"><span>協助族人申請補助</span><b>${U.fmt(S.stats.helped)} 件</b></div>
+  <div class="kv"><span>豐年祭</span><b>${S.stats.festivals} 次</b></div>
+  <div class="kv"><span>家庭</span><b>${S.spouse ? `與${esc(D.NPCS[S.spouse].n)}結婚` : '單身'}${S.kids.length ? `・${S.kids.length} 個孩子` : ''}</b></div>
+  <div class="kv"><span>留下的存款</span><b>${U.fmt(S.money)} 元</b></div>
+  <div class="opts" style="margin-top:14px"><button class="btn" id="eNew">開始新的人生</button><button class="btn alt" id="eLog">回顧人生紀錄</button></div>`;
+  $('endOv').hidden = false;
+  $('eNew').onclick = () => { SIM.wipe(); hideGame(); $('endOv').hidden = true; for (const k of Object.keys(S)) delete S[k]; NEWL.name = ''; createScreen(); $('title').hidden = false; };
+  $('eLog').onclick = () => { $('endOv').hidden = true; UI.tab = 'log'; renderSheet(); setTimeout(() => { const b = document.createElement('button'); b.className = 'btn'; b.textContent = '回到結局'; b.style.cssText = 'position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:31'; b.onclick = () => { b.remove(); $('endOv').hidden = false; }; document.body.appendChild(b); }, 50); };
+}
+
+/* ---------- 存檔時機 ---------- */
+document.addEventListener('visibilitychange', () => { if (document.hidden && S.name && !S.dead) SIM.save(); });
+addEventListener('pagehide', () => { if (S.name && !S.dead) SIM.save(); });
+
+titleScreen();
+})();
+
+</script>
+</body>
+</html>
